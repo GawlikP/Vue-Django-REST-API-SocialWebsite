@@ -11,4 +11,6 @@ git merge main
 git push origin gawlik 
 git push origin boli
 git push origin bruno
+git push origin jacek
 git push origin natalia
+git checkout main
