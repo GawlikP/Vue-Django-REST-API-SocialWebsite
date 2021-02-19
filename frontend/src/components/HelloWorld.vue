@@ -11,9 +11,16 @@
       <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel" target="_blank" rel="noopener">babel</a></li>
       <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint" target="_blank" rel="noopener">eslint</a></li>
     </ul>
+    <!--ładny button-------------------------------------------------------------------------------->
+<MDBBtn tag="a" color="primary" href="#!" floating size="lg" style="background-color: rgb(172, 43, 172);"> 
+    <i class="fab fa-instagram"></i>
+  </MDBBtn>
+  <!--ładny button-------------------------------------------------------------------------------->
+  
     <h3>dupa Links  dsad asd fdsa fdsafds dsaf</h3>
     <TestComponent/>
     <h1> PENIS XDDD</h1>
+    
     <button type="button" class="btn btn-primary">Primary</button>
     <ul>
       <li><a href="https://vuejs.org" target="_blank" rel="noopener">Core Docs</a></li>
@@ -35,7 +42,9 @@
 </template>
 
 <script>
+
 import TestComponent from './TestComponent.vue';
+import { MDBBtn} from "mdb-vue-ui-kit";
 
 
 export default {
@@ -43,11 +52,17 @@ export default {
   props: {
     msg: String
   },
+  
   components:{
-    TestComponent
+    TestComponent,
+    MDBBtn
     
   }
-}
+};
+
+  
+
+  
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
