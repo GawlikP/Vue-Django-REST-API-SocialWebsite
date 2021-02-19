@@ -11,9 +11,10 @@
       <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel" target="_blank" rel="noopener">babel</a></li>
       <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint" target="_blank" rel="noopener">eslint</a></li>
     </ul>
-    <h3>Essential Links  dsad asd fdsa fdsafds dsaf</h3>
+    <h3>dupa Links  dsad asd fdsa fdsafds dsaf</h3>
+    <TestComponent/>
     <h1> PENIS XDDD</h1>
-
+    <button type="button" class="btn btn-primary">Primary</button>
     <ul>
       <li><a href="https://vuejs.org" target="_blank" rel="noopener">Core Docs</a></li>
       <li><a href="https://forum.vuejs.org" target="_blank" rel="noopener">Forum</a></li>
@@ -21,7 +22,8 @@
       <li><a href="https://twitter.com/vuejs" target="_blank" rel="noopener">Twitter</a></li>
       <li><a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a></li>
     </ul>
-    <h3>Ecosystem</h3>
+    <h3><i class="fas fa-angry"></i></h3>
+    
     <ul>
       <li><a href="https://router.vuejs.org" target="_blank" rel="noopener">vue-router</a></li>
       <li><a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a></li>
@@ -33,10 +35,17 @@
 </template>
 
 <script>
+import TestComponent from './TestComponent.vue';
+
+
 export default {
   name: 'HelloWorld',
   props: {
     msg: String
+  },
+  components:{
+    TestComponent
+    
   }
 }
 </script>
