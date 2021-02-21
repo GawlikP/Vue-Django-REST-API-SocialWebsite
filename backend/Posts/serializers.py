@@ -18,4 +18,6 @@ class PostSerializer(serializers.Serializer):
         return Post.objects.create(**validated_data)
 
     
+
+
     
