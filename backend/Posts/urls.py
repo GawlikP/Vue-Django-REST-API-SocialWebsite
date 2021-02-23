@@ -1,11 +1,12 @@
 from django.urls import path
 from rest_framework.urlpatterns import format_suffix_patterns
-from Posts.views import post_list
+from Posts.views import post_list, post_detail
 
 
 urlpatterns = [
 
     path('', post_list),
+    path('<int:pk>/', post_detail),
 
 ]
 
