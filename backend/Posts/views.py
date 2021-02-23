@@ -24,7 +24,7 @@ def post_list(request, format=None):
     elif request.method == 'POST':
         serializer = PostSerializer(data= request.data)
         if serializer.is_valid():
-            serailzer.save()
+            serializer.save()
             return JsonResponse(serializer.data, status=status.HTTP_201_CREATED)
         return JsonResponse(serializer.errors, status=status.HTTP_406_NOT_ACCEPTABLE)
     

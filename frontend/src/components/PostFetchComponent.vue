@@ -70,7 +70,7 @@ export default {
                 body: JSON.stringify(post)
             });
             this.posts.push(await response.json());
-
+           
             this.getPosts();
         }
     },
