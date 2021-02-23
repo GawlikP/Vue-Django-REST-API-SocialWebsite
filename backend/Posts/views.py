@@ -36,7 +36,7 @@ def post_detail(request, pk, format=None):
     # pk = PRIMARY KEY
 
     try:
-        post = Posts.objects.get(pk=pk)
+        post = Post.objects.get(pk=pk)
     except Post.DoesNotExist:
         return HttpResponse(status=status.HTTP_404_NOT_FOUND)
 

@@ -1,10 +1,11 @@
 <template>
-  <div class="Posts">
-    <img alt="Vue logo" src="../assets/backendsiebawi.png">
+  <div class="container" >
+  <center>  <img alt="Vue logo" src="../assets/backendsiebawi.png">
         <h1> Witajcie przystojniaczki, tutaj tylko backend na chwile <br>
         Nie przeszkadzaj sobie i ciesz sie zyciem mordeczko</h1>    
   
         <PostFetchComponent/>
+    </center>
   </div>
 </template>
 
