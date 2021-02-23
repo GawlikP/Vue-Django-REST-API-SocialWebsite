@@ -1,10 +1,27 @@
 <template>
     <div  >
         <form @submit.prevent="createPost">
+
+            <div >
+                <h2><i class="fas fa-angry" v-if="posted == 1" style="color:red"></i>
+                <i class="fas fa-smile" v-if="posted == -1" style="color:green"></i> </h2>
+                <div v-if="posted == 1">
+                <MDBBadge  color="danger" v-for="(error, index) in errors" :key="error.id">
+                    <b>{{index}} </b>: {{error[0]}}
+                    
+                </MDBBadge>
+                </div>
+            </div>
+            <br>
+
             <MDBInput label="Post Title" size="lg" v-model="post.title" />
             <MDBInput label="Post Content" size="lg" v-model="post.content" />
-   
-             <MDBBtn color="secondary" type="submit">Secondary</MDBBtn>
+    
+             <MDBBtn color="secondary" type="submit">Secondary</MDBBtn>  
+                <br>
+            
+
+            <hr>
     </form>
     </div>
 
@@ -12,14 +29,15 @@
 
 <script>
 
-import { MDBInput, MDBBtn } from 'mdb-vue-ui-kit';
+import { MDBInput, MDBBtn, MDBBadge } from 'mdb-vue-ui-kit';
 
 export default {
     name: 'PostFormComponent',
 
      components: {
       MDBInput,
-      MDBBtn
+      MDBBtn,
+        MDBBadge,
     },
 
     data(){
@@ -28,6 +46,8 @@ export default {
                 'title': '',
                 'content': ''
             },
+            posted: 0,
+            errors:{},
             
         }
     },
@@ -40,8 +60,21 @@ export default {
                  },
                  body: JSON.stringify(this.post)
              });
+             var res = await response;
+             var output = await response.json()
+             var status = res.status;
+             //console.log(output)
+                this.posted  = -1;
+                console.log(status);
+               if (status == 201){
+                   this.posted = -1;
+               }else {
+                   this.posted = 1;
+               }
 
-             console.log(await response);
+                if (this.posted == 1){
+                    this.errors = output;
+                }
          }
     },
 

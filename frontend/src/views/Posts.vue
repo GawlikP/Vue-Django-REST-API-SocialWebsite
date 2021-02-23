@@ -1,8 +1,8 @@
 <template>
   <div class="container" >
   <center>  <img alt="Vue logo" src="../assets/backendsiebawi.png">
-        <h1> Witajcie przystojniaczki, tutaj tylko backend na chwile <br>
-        Nie przeszkadzaj sobie i ciesz sie zyciem mordeczko</h1>    
+        <h1> Witaj młody byku, wszedłeś na terytorium testowania backendu <br>
+        Zachowaj spokój, otwórz kustosza i kontynuuj swoją podróż</h1>    
   
         <PostFetchComponent/>
 
