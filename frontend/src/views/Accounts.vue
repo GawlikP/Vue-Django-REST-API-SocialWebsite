@@ -1,8 +1,7 @@
 <template>
   <div class="container" >
-  <center>  <img alt="Vue logo" src="../assets/szczescboze.png">
-        <h1>Szczesc Boze, obywatelu kondominium zydowsko/rosyjskiego pod niemieckim zarzadem powierniczym <br>
-        Zachowaj spokój, otwórz kustosza i kontynuuj swoją podróż</h1>    
+  <center>  
+        <h1 style="color: white">Utwórz konto</h1>    
   
             <br>
             <AccountRegisterComponent />
@@ -22,3 +21,7 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+
+</style>

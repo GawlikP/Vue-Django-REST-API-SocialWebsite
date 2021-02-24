@@ -1,38 +1,45 @@
 <template>
+
     <div id="PostFetchComponent">
-        <div class="container">
-            
-            <MDBCard v-for="post in posts" :key="post.id" style="text-align:left">
-                <MDBCardBody>
-                    <MDBCardTitle>{{post.title}}</MDBCardTitle>
-                    <hr>
-                    <MDBCardText>
-                        {{post.content}}
-                    </MDBCardText>
-                   
-                        <i  @click="giveHearth(post)" v-if="hearthed[post.id] == false" class="far fa-heart" style="color:red"></i>
-                        <i v-else class="fas fa-heart" style="color:red"></i> 
-                        {{post.hearts}}
-                    
-                </MDBCardBody>
+        <div class="container" >
+             <MDBTable>
+
+    <tbody v-for="post in posts" :key="post.id" style="text-align:left">
+        <tr>
+           <strong>{{post.title}}</strong>
+        </tr>
+        <tr>
+        {{post.content}}
+        </tr>
+        <tr>
+            <p class="text-center">
                 
-            </MDBCard>
+              <i data-toggle="tooltip" title="Lubię" @click="giveHearth(post)" v-if="hearthed[post.id] == false" class="far fa-heart" style="color:red"></i>
+                      <i v-else class="fas fa-heart"   style="color:red"></i> 
+                        {{post.hearts}}
+            </p>  
+        </tr>
+        <hr> 
+        
+       
+    </tbody>
+  </MDBTable>
+            
             
         </div>
     </div>
+
 </template>
 <script>
-    import { MDBCard, MDBCardBody, MDBCardTitle, MDBCardText } from "mdb-vue-ui-kit";
+    import { MDBTable  } from "mdb-vue-ui-kit";
     
 
 export default {
  
     name:'PostFetchComponent',
      components: {
-      MDBCard,
-      MDBCardBody,
-      MDBCardTitle,
-      MDBCardText,
+      
+      MDBTable 
      // MDBBtn
     },
     data(){
@@ -78,5 +85,8 @@ export default {
 }
 </script>
 <style scoped>
+tr,hr {
+color: white;
+}
 
 </style>

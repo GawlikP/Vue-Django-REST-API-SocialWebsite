@@ -1,16 +1,25 @@
 <template>
     <div id="Account RegisterComponent">
-        <div class="jumbotron">
+
+        
+
             <form @submit.prevent="createAccount">
-                <MDBInput label="Nick" size="lg" v-model="account.nick" />
-                <MDBInput label="Password" size="lg" v-model="account.password" />
-                <MDBInput label="Confirm Password" size="lg" v-model="account.password2" />
-            
-                <MDBBtn color="secondary" type="submit"> Register </MDBBtn>
+                <div class="d-grid gap-2 col-3 mx-auto">
+                    <MDBInput  label="Login" white size="lg" v-model="account.nick" />
+                        <br>
+                    <MDBInput label="Hasło" white size="lg" type="password" v-model="account.password" />
+                        <br>
+                    <MDBInput label="Powtórz hasło" white size="lg" type="password" v-model="account.password2" />
+                        <br>
+                    <MDBBtn color="info" type="submit" size="lg" rounded>Zarejestruj się</MDBBtn>
+ 
+                </div>
+
                 <h1 v-if="output">{{output}} </h1>
+                
             </form> 
         </div>
-    </div>
+ 
 </template>
 <script>
 

@@ -1,9 +1,9 @@
 <template>
   <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link> |
-    <router-link to="/posts">Posts</router-link> |
-    <router-link to="/accounts">Accounts</router-link>
+    <router-link to="/">Strona Główna</router-link> |
+    <router-link to="/about">Cokolwiek</router-link> |
+    <router-link to="/posts">Posty</router-link> |
+    <router-link to="/accounts">Rejestracja</router-link>
   </div>
   <router-view/>
 </template>
@@ -12,7 +12,7 @@
 body{
  padding: 0;
  margin: 0;
-
+ background-color: black;
 
 }
 #app {

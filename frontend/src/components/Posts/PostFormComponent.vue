@@ -13,11 +13,14 @@
                 </div>
             </div>
             <br>
-
-            <MDBInput label="Post Title" size="lg" v-model="post.title" />
-            <MDBInput label="Post Content" size="lg" v-model="post.content" />
-    
-             <MDBBtn color="secondary" type="submit">Secondary</MDBBtn>  
+            <div class="d-grid gap-2 col-3 mx-auto">
+            <MDBInput label="Tytył Postu" white size="lg" v-model="post.title" />
+            <br>
+            <MDBInput label="Treść Postu" white size="lg" v-model="post.content" />
+            <br>
+           
+             <MDBBtn color="secondary" type="submit" size="lg" rounded>Dodaj</MDBBtn>  
+            </div>
                 <br>
             
 
