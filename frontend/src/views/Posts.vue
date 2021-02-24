@@ -14,8 +14,8 @@
 <script>
 // @ is an alias to /src
 
-import PostFetchComponent from '@/components/PostFetchComponent.vue'
-import PostFormComponent from '@/components/PostFormComponent.vue';
+import PostFetchComponent from '@/components/Posts/PostFetchComponent.vue'
+import PostFormComponent from '@/components/Posts/PostFormComponent.vue';
 
 export default {
   name: 'Posts',

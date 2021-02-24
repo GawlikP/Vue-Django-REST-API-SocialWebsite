@@ -8,7 +8,7 @@
 <script>
 // @ is an alias to /src
 
-import PostFetchComponent from '@/components/PostFetchComponent.vue'
+import PostFetchComponent from '@/components/Posts/PostFetchComponent.vue'
 
 export default {
   name: 'About',
