@@ -24,16 +24,20 @@
  
 </template>
 <script>
-
+// Importowanie tagow z MDB5, ladnych guziczkow itd
 import { MDBInput, MDBBtn, } from 'mdb-vue-ui-kit';
 
 export default {
+    // nazwa komponentu, odpowiada tagowi jakiego trzeba uzyc
+    // aby wywolac go w innym komponencie lub widoku
     name: 'AccountRegisterComponent',
     components: {
       MDBInput,
       MDBBtn,
       //  MDBBadge,
     },
+    // zmienne uzywane w dzialaniu strony, musza byc zadeklarowane raz 
+    // dzialaja i odswiezaja sie dynamicznie
     data(){
         return {
             account : {
@@ -43,12 +47,23 @@ export default {
                 'email': '',
 
             },
+            // do tej zmiennej bedzie przeniesiony json, ktory odesle nam serwer
             output: '',
             errors: {},
         }
     },
+    // deklarowane sa tutaj metody, ktore beda uzywane w komponencie
     methods: {
+        // async musi zostac uzyte z tego powodu, ze nie wiemy kiedy dostaniemy 
+        // odpowiedz od serwera
         async createAccount(){
+            // metoda fetch odpowaida za wyslanie requesta do serwera
+            // dziala tak samo jak kazdy inny request
+            // najpierw podajemy url
+            // nastepnie metode ( post, get, delete, put)
+            // nastepnie okresalmy headery ( 'Content-Type', 'Authorization')
+            // w sekcji body nadajemy naszego jsona z trescia parametrow 
+            //
             var response = await fetch('http://localhost:8000/accounts/',{
                 method: 'post',
                 headers: {
@@ -58,6 +73,7 @@ export default {
                 body: JSON.stringify(this.account)
             });
             //var res = await response;
+            // zmienna output jest tutaj nadpisywana przez pozysakna odpowiedz
             var output = await response.json()
             this.output = output;
         },
