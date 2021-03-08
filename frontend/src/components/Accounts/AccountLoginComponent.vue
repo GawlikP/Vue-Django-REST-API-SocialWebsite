@@ -43,7 +43,7 @@ export default {
     },
     methods: {
         async createAccount(){
-            var response = await fetch('http://localhost:8000/login/',{
+            var response = await fetch('http://localhost:8000/accounts/login/',{
                 method: 'post',
                 headers: {
                     'Content-Type': 'application/json'
