@@ -41,14 +41,15 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'rest_framework.authtoken',
     'corsheaders',
     'Posts.apps.PostsConfig',
+   # 'Accounts',
+    'core',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    
-    
     'django.contrib.sessions.middleware.SessionMiddleware',
     
     'corsheaders.middleware.CorsMiddleware',
@@ -63,6 +64,20 @@ MIDDLEWARE = [
 CORS_ORIGIN_ALLOW_ALL = True
 
 ROOT_URLCONF = 'backend.urls'
+
+
+AUTH_USER_MODEL = 'core.Account'
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+        'rest_framework.permissions.AllowAny',
+    ],
+    'TEST_REQUEST_DEFAULT_FORMAT': 'json',
+}
 
 TEMPLATES = [
     {
