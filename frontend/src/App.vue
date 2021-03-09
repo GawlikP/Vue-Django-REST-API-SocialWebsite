@@ -3,7 +3,8 @@
     <router-link to="/">Strona Główna</router-link> |
     <router-link to="/about">Cokolwiek</router-link> |
     <router-link to="/posts">Posty</router-link> |
-    <router-link to="/accounts">Rejestracja</router-link>
+    <router-link to="/accounts">Rejestracja</router-link> | 
+    <router-link to="/login">Zaloguj się</router-link>
   </div>
   <router-view/>
 </template>
