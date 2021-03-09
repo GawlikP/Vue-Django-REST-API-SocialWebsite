@@ -17,9 +17,9 @@
   </MDBBtn>
   <!--ładny button-------------------------------------------------------------------------------->
   
-    <h3>dupa Links  dsad asd fdsa fdsafds dsaf</h3>
+    <h3> Links  dsad asd fdsa fdsafds dsaf</h3>
     <TestComponent/>
-    <h1> PENIS XDDD</h1>
+    <h1> </h1>
     
     <button type="button" class="btn btn-primary">Primary</button>
     <ul>

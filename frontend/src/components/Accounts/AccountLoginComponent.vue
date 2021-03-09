@@ -1,5 +1,5 @@
 <template>
-    <div id="Account RegisterComponent">
+    <div id="AccountLoginComponent">
 
         
 
@@ -9,11 +9,7 @@
                         <br>
                     <MDBInput label="Hasło" white size="lg" type="password" v-model="account.password" />
                         <br>
-                    <MDBInput label="Powtórz hasło" white size="lg" type="password" v-model="account.password2" />
-                        <br>
-                    <MDBInput label="Email" white size="lg" type="email" v-model="account.email" />
-                        <br>
-                    <MDBBtn color="info" type="submit" size="lg" rounded>Zarejestruj się</MDBBtn>
+                    <MDBBtn color="info" type="submit" size="lg" rounded>Zaloguj się</MDBBtn>
  
                 </div>
 
@@ -39,8 +35,6 @@ export default {
             account : {
                 'username': '',
                 'password': '',
-                'password2': '',
-                'email': '',
 
             },
             output: '',
@@ -49,7 +43,7 @@ export default {
     },
     methods: {
         async createAccount(){
-            var response = await fetch('http://localhost:8000/accounts/',{
+            var response = await fetch('http://localhost:8000/accounts/login/',{
                 method: 'post',
                 headers: {
                     'Content-Type': 'application/json'
