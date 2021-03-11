@@ -13,7 +13,7 @@
                         <br>
                     <MDBInput label="Email" white size="lg" type="email" v-model="account.email" />
                         <br>
-                    <MDBBtn color="info" type="submit" size="lg" rounded>Zarejestruj się</MDBBtn>
+                    <MDBBtn color="danger" type="submit" size="lg" rounded>Zarejestruj się</MDBBtn>
  
                 </div>
 
