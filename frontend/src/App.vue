@@ -13,7 +13,7 @@
 body{
  padding: 0;
  margin: 0;
- background-color: black;
+ background-color: rgb(17, 17, 17);
 
 }
 #app {
@@ -21,7 +21,7 @@ body{
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: #ffffff;
 }
 
 #nav {
@@ -34,6 +34,6 @@ body{
 }
 
 #nav a.router-link-exact-active {
-  color: #42b983;
+  color: #df5656;
 }
 </style>

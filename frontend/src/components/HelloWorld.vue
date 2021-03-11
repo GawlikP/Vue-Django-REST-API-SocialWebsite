@@ -1,50 +1,22 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <p>
-      For a guide and recipes on how to configure / customize this project,<br>
-      check out the
-      <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
-    </p>
-    <h3>Installed CLI Plugins</h3>
-    <ul>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel" target="_blank" rel="noopener">babel</a></li>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint" target="_blank" rel="noopener">eslint</a></li>
-    </ul>
-    <!--ładny button-------------------------------------------------------------------------------->
-<MDBBtn tag="a" color="primary" href="#!" floating size="lg" style="background-color: rgb(172, 43, 172);"> 
-    <i class="fab fa-instagram"></i>
-  </MDBBtn>
-  <!--ładny button-------------------------------------------------------------------------------->
-  
-    <h3> Links  dsad asd fdsa fdsafds dsaf</h3>
-    <TestComponent/>
-    <h1> </h1>
-    
-    <button type="button" class="btn btn-primary">Primary</button>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank" rel="noopener">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank" rel="noopener">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank" rel="noopener">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank" rel="noopener">Twitter</a></li>
-      <li><a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a></li>
-    </ul>
-    <h3><i class="fas fa-angry"></i></h3>
-    
-    <ul>
-      <li><a href="https://router.vuejs.org" target="_blank" rel="noopener">vue-router</a></li>
-      <li><a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a></li>
-      <li><a href="https://github.com/vuejs/vue-devtools#vue-devtools" target="_blank" rel="noopener">vue-devtools</a></li>
-      <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
-    </ul>
-  </div>
+<div class="main-page">
+  <div class="row col-lg-12 h-100">     
+    <div class="col-lg-8 panda-bg">
+        <!-- <img src="../assets/redpanda.jpg" class="img-responsive" alt="panda"> -->
+    </div>     
+    <div class="col-lg-4 d-flex align-items-center justify-content-center">        
+      <div class="row col-lg-12 p-5">
+        <h1 class="text-start">Dołącz do pandastycznej społeczności!</h1>
+        <MDBBtn color="danger" rounded size="lg" class="mb-2">Zarejestruj się</MDBBtn>           
+        <MDBBtn outline="danger" rounded  size="lg">Zaloguj się</MDBBtn>       
+      </div>     
+    </div>   
+  </div> 
+  </div> 
 </template>
 
 <script>
-
-import TestComponent from './TestComponent.vue';
-import { MDBBtn} from "mdb-vue-ui-kit";
+import { MDBBtn } from "mdb-vue-ui-kit";
 
 
 export default {
@@ -54,9 +26,7 @@ export default {
   },
   
   components:{
-    TestComponent,
     MDBBtn
-    
   }
 };
 
@@ -67,18 +37,25 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
-  margin: 40px 0 0;
+.main-page{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
-ul {
-  list-style-type: none;
-  padding: 0;
+.panda-bg{
+  background-image: url("../assets/redpanda.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  min-height: 40vh;
 }
-li {
-  display: inline-block;
-  margin: 0 10px;
+
+.btn-danger:hover, .btn-outline-danger:hover{
+  background-color: rgb(77, 170, 165);
+  border-color: plum;
+  color: white;
 }
-a {
-  color: #42b983;
-}
+
 </style>
