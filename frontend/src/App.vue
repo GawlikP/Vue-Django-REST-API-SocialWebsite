@@ -1,5 +1,6 @@
 <template>
   <div id="nav">
+    
     <router-link to="/">Strona Główna</router-link> |
     <router-link to="/about">Cokolwiek</router-link> |
     <router-link to="/posts">Posty</router-link> |

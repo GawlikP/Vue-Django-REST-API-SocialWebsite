@@ -1,22 +1,37 @@
 <template>
-<div class="main-page">
-  <div class="row col-lg-12 h-100">     
-    <div class="col-lg-8 panda-bg">
-        <!-- <img src="../assets/redpanda.jpg" class="img-responsive" alt="panda"> -->
-    </div>     
-    <div class="col-lg-4 d-flex align-items-center justify-content-center">        
-      <div class="row col-lg-12 p-5">
-        <h1 class="text-start">Dołącz do pandastycznej społeczności!</h1>
-        <MDBBtn color="danger" rounded size="lg" class="mb-2">Zarejestruj się</MDBBtn>           
-        <MDBBtn outline="danger" rounded  size="lg">Zaloguj się</MDBBtn>       
-      </div>     
-    </div>   
-  </div> 
-  </div> 
+
+<MDBContainer fluid>
+  <MDBRow class="mb-3">
+    <MDBCol col="13" md="7" offsetLg="0" ><img src="../assets/panda.jpg" class="img-fluid" alt="panda" ></MDBCol>
+    <MDBCol col="11" md="4"> 
+  
+      <MDBRow class="mb-3">  
+        
+      
+        <p class="text-start " style="font-size: 350%;"><strong>Dołącz do pandastycznej społeczności!</strong></p>
+        <br>
+        <br>
+        <p class="text-start " style="font-size: 170%;"><strong>Zostań pandą już dzisiaj.</strong></p>
+      </MDBRow>
+       
+        <MDBBtn tag="a" color="danger" rounded size="lg" href="/accounts" style="width:70%;" ><strong>Zarejestruj się</strong></MDBBtn>
+        
+    
+ 
+          <br>
+          <br>
+        <MDBBtn tag="a" outline="danger" rounded  size="lg" href="/login" style="width:70%;"><strong>Zaloguj się</strong></MDBBtn>
+      
+    </MDBCol>
+  </MDBRow>
+</MDBContainer>    
+ 
 </template>
 
 <script>
-import { MDBBtn } from "mdb-vue-ui-kit";
+
+
+import {  MDBBtn,MDBCol, MDBRow,MDBContainer  } from "mdb-vue-ui-kit";
 
 
 export default {
@@ -26,7 +41,11 @@ export default {
   },
   
   components:{
-    MDBBtn
+      MDBBtn,
+      MDBCol,
+      MDBRow,
+      MDBContainer 
+    
   }
 };
 
@@ -37,25 +56,6 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.main-page{
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-.panda-bg{
-  background-image: url("../assets/redpanda.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  min-height: 40vh;
-}
 
-.btn-danger:hover, .btn-outline-danger:hover{
-  background-color: rgb(77, 170, 165);
-  border-color: plum;
-  color: white;
-}
 
 </style>
