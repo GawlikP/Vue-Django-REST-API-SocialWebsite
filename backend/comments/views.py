@@ -7,59 +7,48 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny
 from rest_framework.parsers import JSONParser
 
-from Posts.serializers import PostSerializer
-from Posts.models import Post
+from comments.serializers import CommentSerializer
+from comments.models import Comment
 from rest_framework import status 
+# Create your views here.
 
-
-
-#? endpoint dla pobierania i tworzenia postow
-
+#? endpoint dla pobierania i tworzenia komentarzy
 
 @api_view(['GET', 'POST'])
 @permission_classes([AllowAny])
-def post_list(request, format=None):
+def comments_list(request, format=None):
     if request.method == 'GET':
-        posts = Post.objects.all()
-        serializer = PostSerializer(posts, many=True)
+        comments = Comment.objects.all()
+        serializer = CommentSerializer(comments, many=True)
         return JsonResponse(serializer.data, status=status.HTTP_200_OK, safe=False)
     elif request.method == 'POST':
-        serializer = PostSerializer(data= request.data)
+        serializer = CommentSerializer(data = request.data)
         if serializer.is_valid():
             serializer.save()
             return JsonResponse(serializer.data, status=status.HTTP_201_CREATED)
         return JsonResponse(serializer.errors, status=status.HTTP_406_NOT_ACCEPTABLE)
-    
-#? endpoint dla modyfikacji i detali postow 
 
 @api_view(['GET', 'PUT'])
 @permission_classes([AllowAny])
-def post_detail(request, pk, format=None):
-
-    #! pk = PRIMARY KEY
-
+def comments_detail(request, pk, format=None):
+    
     try:
-        post = Post.objects.get(pk=pk)
-    except Post.DoesNotExist:
+        comment = Comment.objects.get(pk=pk)
+    except Comment.DoesNotExist:
         return HttpResponse(status=status.HTTP_404_NOT_FOUND)
-
-    #? endpoint sluzacy do oddawania szczegolow na temat jednego poszczegolnego posta
+    
+     #? endpoint sluzacy do oddawania szczegolow na temat jednego poszczegolnego KOMENTARZA
 
     if request.method == 'GET':
-        serializer = PostSerializer(post)
+        serializer = CommentSerializer(comment)
         return JsonResponse(serializer.data)
-
-    #? za kazdym razem jak edytujemy jakiekolwiek wartosci naszego posta, uzywamy tego endpoita
+        
+    #? za kazdym razem jak edytujemy jakiekolwiek wartosci naszego komentarza, uzywamy tego endpoita
 
     elif request.method == 'PUT':
         data = JSONParser().parse(request)
-        serializer = PostSerializer(post, data=data)
+        serializer = CommentSerializer(comment, data=data)
         if serializer.is_valid():
             serializer.save()
-            return JsonResponse(serializer.data, status=status.HTTP_200_OK)
+            return JsonResponse(serializer.data, status=status.HTTP_200_OK)   
         return JsonResponse(serializer.errors, status=status.HTTP_406_NOT_ACCEPTABLE)
-
-    
-
-
-
