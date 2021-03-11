@@ -9,7 +9,7 @@
                         <br>
                     <MDBInput label="Hasło" white size="lg" type="password" v-model="account.password" />
                         <br>
-                    <MDBBtn color="info" type="submit" size="lg" rounded>Zaloguj się</MDBBtn>
+                    <MDBBtn color="danger" type="submit" size="lg" rounded>Zaloguj się</MDBBtn>
  
                 </div>
 
