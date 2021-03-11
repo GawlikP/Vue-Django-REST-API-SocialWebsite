@@ -1,14 +1,31 @@
 <template>
-  <div id="nav">
-    
-    <router-link to="/">Strona Główna</router-link> |
-    <router-link to="/about">Cokolwiek</router-link> |
-    <router-link to="/posts">Posty</router-link> |
-    <router-link to="/accounts">Rejestracja</router-link> | 
-    <router-link to="/login">Zaloguj się</router-link>
+  <div>
+    <!-- <div>{{this.$route.name}}</div> -->
+    <div id="nav" class="d-flex flex-row flex-wrap justify-content-center align-content-lg-center align-content-start py-1 px-3 mb-5" v-if="`${this.$route.name}`!=`Home`">
+      <router-link class="col-lg-auto text-nowrap mx-1 my-0" v-for="url in urls" v-bind:key="url.link" v-bind:to="`${ url.link }`">{{ url.title }}</router-link>
+      <router-link v-if="true" class="col-lg-auto text-nowrap mx-1 my-0" to="/accounts">Rejestracja</router-link>
+      <router-link v-if="true" class="col-lg-auto text-nowrap mx-1 my-0" to="/login">Zaloguj się</router-link>
+    </div>
+    <router-view/>
   </div>
-  <router-view/>
 </template>
+
+
+<script>
+  export default{
+     data(){
+      return {
+        urls: [
+          {link: "/",         title: "Strona Główna"},
+          {link: "/about",    title: "Cokolwiek"},
+          {link: "/posts",    title: "Posty"}
+        ]
+      }
+    }
+  }
+</script>
+
+
 
 <style>
 body{
@@ -26,15 +43,23 @@ body{
 }
 
 #nav {
-  padding: 30px;
+  height: 60px;
+  background-color: #df5656;
+  box-shadow: 0px 8px 10px rgba(0,0,0,0.7);
 }
 
 #nav a {
   font-weight: bold;
-  color: #2c3e50;
+  /* color: #2c3e50; */
+  color: #ffffff;
+  transition: all 0.25s;
+}
+#nav a:hover {
+  /* color: #82c7ff; */
 }
 
 #nav a.router-link-exact-active {
-  color: #df5656;
+  color: #3b3b3b;
+  border-bottom: 1px solid #242424;
 }
 </style>
