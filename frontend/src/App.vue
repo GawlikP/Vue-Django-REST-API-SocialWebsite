@@ -1,5 +1,6 @@
 <template>
   <div id="nav">
+    
     <router-link to="/">Strona Główna</router-link> |
     <router-link to="/about">Cokolwiek</router-link> |
     <router-link to="/posts">Posty</router-link> |
@@ -21,7 +22,7 @@ body{
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: #ffffff;
 }
 
 #nav {
