@@ -1,3 +1,4 @@
+
 <template>
   <div class="about">
     <h1>This is an about page</h1>
@@ -14,6 +15,11 @@ export default {
   name: 'About',
   components: {
       PostFetchComponent
+  },
+
+  setup()
+  { window.localStorage.setItem("cokolwiek","cokolwiek")
+    
   }
 }
 </script>
