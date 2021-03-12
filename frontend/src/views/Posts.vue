@@ -3,7 +3,7 @@
   <center>  <img alt="Vue logo" src="../assets/backendsiebawi.png">
         <h1> Witaj młody byku, wszedłeś na terytorium testowania backendu <br>
         Zachowaj spokój, otwórz kustosza i kontynuuj swoją podróż</h1>    
-  
+      <h1 v-if="username">{{username}}</h1>
         <PostFetchComponent/>
 
         <PostFormComponent/>
@@ -22,6 +22,18 @@ export default {
   components: {
       PostFetchComponent,
       PostFormComponent,
+  },
+  data(){
+    return{
+      username : "" 
+    }
+
+  },
+  created(){
+    if(window.sessionStorage.getItem("username")){
+      this.username = window.sessionStorage.getItem("username");
+    }
   }
+
 }
 </script>
