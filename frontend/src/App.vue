@@ -5,6 +5,7 @@
       <router-link class="col-lg-auto text-nowrap mx-1 my-0" v-for="url in urls" v-bind:key="url.link" v-bind:to="`${ url.link }`">{{ url.title }}</router-link>
       <router-link v-if="true" class="col-lg-auto text-nowrap mx-1 my-0" to="/accounts">Rejestracja</router-link>
       <router-link v-if="true" class="col-lg-auto text-nowrap mx-1 my-0" to="/login">Zaloguj się</router-link>
+      <AuthorizeGuardComponent />
     </div>
     <router-view/>
   </div>
@@ -13,7 +14,13 @@
 
 
 <script>
+import AuthorizeGuardComponent from './components/Security/AuthorizeGuardComponent.vue'
   export default{
+
+    components:{
+        
+      AuthorizeGuardComponent
+    },
      data(){
       return {
         urls: [
@@ -23,6 +30,7 @@
         ]
       }
     }
+
   }
 </script>
 

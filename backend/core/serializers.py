@@ -1,7 +1,7 @@
 from rest_framework import serializers
 
 from .models import Account 
-
+from rest_framework.authtoken.models import Token
 
 class ResterSerialier(serializers.ModelSerializer):
 
@@ -46,3 +46,17 @@ class LoginSerializer(serializers.Serializer):
                 raise serializers.ValidationError({'error' : 'Wrong password!'})
         else:
             raise serializers.ValidationError({'error': 'User does not exits!'})
+
+class AuthTokenSerializer(serializers.Serializer):
+
+    token = serializers.CharField()
+
+    def check_token(self):
+        if Token.objects.filter(key=self.validated_data['token']).exists():
+            token = Token.objects.get(key=self.validated_data['token'])
+            return True
+            
+        else:
+            raise serializers.ValidationError({'error': 'Token does not exist!'})
+        
+        return False

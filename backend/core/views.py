@@ -11,7 +11,7 @@ from django.http import JsonResponse
 from rest_framework.authtoken.models import Token
 from .models import Account
 
-from .serializers import ResterSerialier, LoginSerializer
+from .serializers import ResterSerialier, LoginSerializer, AuthTokenSerializer
 
 
 @api_view(['POST'])
@@ -45,7 +45,21 @@ def accounts_login(request, format=None):
         else:
             return JsonResponse(serializer.errors, status=status.HTTP_406_NOT_ACCEPTABLE)
 
-@api_view(['GET'])
+@api_view(['POST'])
 @permission_classes([IsAuthenticated])
 def auth_test_view(request):
     return JsonResponse({'response' : 'U HAVE PERMISSION!'}, status=status.HTTP_200_OK)
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def check_token(request ):
+    if request.method == 'POST':
+        serializer = AuthTokenSerializer(data= request.data)
+        if serializer.is_valid():
+            success = serializer.check_token()
+            if success:
+                JsonResponse(serializer.data, status=status.HTTP_200_OK)
+            else:
+                JsonResponse(serializer.errors, status=status.HTTP_406_NOT_ACCEPTABLE)
+        else:
+            JsonResponse(serializer.errors, status=status.HTTP_406_NOT_ACCEPTABLE)

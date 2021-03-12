@@ -49,7 +49,7 @@ export default {
             if(response.status == 200){
                 window.sessionStorage.setItem("token",this.output["token"]);
                  window.sessionStorage.setItem("username",this.output["username"]);
-                alert(window.sessionStorage.getItem("token"));
+                alert(window.sessionStorage.getItem("token") + window.sessionStorage.getItem("username"));
             }
           
         },
