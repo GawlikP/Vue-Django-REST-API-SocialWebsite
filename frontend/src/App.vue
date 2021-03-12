@@ -11,6 +11,7 @@
 </template>
 
 
+
 <script>
   export default{
      data(){
@@ -26,8 +27,9 @@
 </script>
 
 
-
 <style>
+
+
 body{
  padding: 0;
  margin: 0;

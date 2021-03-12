@@ -1,20 +1,18 @@
 from django.db import models
 from core.models import Account
+from Posts.models import Post
 # Create your models here.
 
-
-class Post(models.Model):
+class Comment(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     deleted = models.BooleanField(default=False)
-    title = models.CharField(max_length=512, blank=False)
-    content = models.TextField(default='')
-    hearts = models.IntegerField(default=0)
+    content = models.TextField()
+    likes = models.IntegerField()
     author = models.ForeignKey(Account, on_delete=models.CASCADE)
-    
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+
     def __str__(self):
-        return self.title
+        return self.content
+
     class Meta:
         ordering = ['created']
-
-        
-

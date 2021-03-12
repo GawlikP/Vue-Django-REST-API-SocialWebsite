@@ -16,7 +16,7 @@
 import { MDBInput, MDBBtn, } from 'mdb-vue-ui-kit';
 
 export default {
-    name: 'AccountRegisterComponent',
+    name: 'AccountLoginComponent',
     components: {
       MDBInput,
       MDBBtn
@@ -43,8 +43,15 @@ export default {
                 body: JSON.stringify(this.account)
             });
             //var res = await response;
-            var output = await response.json()
+             var output = await response.json()
             this.output = output;
+            
+            if(response.status == 200){
+                window.sessionStorage.setItem("token",this.output["token"]);
+                 window.sessionStorage.setItem("username",this.output["username"]);
+                alert(window.sessionStorage.getItem("token"));
+            }
+          
         },
     }
 
