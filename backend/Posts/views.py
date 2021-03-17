@@ -24,7 +24,12 @@ def post_list(request, format=None):
         serializer = PostSerializer(posts, many=True)
         return JsonResponse(serializer.data, status=status.HTTP_200_OK, safe=False)
     elif request.method == 'POST':
-        serializer = PostSerializer(data= request.data)
+        setattr(request.data, '_mutable', True)
+        data = request.data 
+        print(data)
+        data['author'] = request.user.id
+        print(data)
+        serializer = PostSerializer(data= data)
         if serializer.is_valid():
             serializer.save()
             return JsonResponse(serializer.data, status=status.HTTP_201_CREATED)
