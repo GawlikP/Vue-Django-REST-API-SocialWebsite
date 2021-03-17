@@ -7,7 +7,7 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.parsers import JSONParser
 
-from Posts.serializers import PostSerializer
+from Posts.serializers import PostSerializer, PostListSerializer
 from Posts.models import Post
 from rest_framework import status 
 
@@ -21,7 +21,8 @@ from rest_framework import status
 def post_list(request, format=None):
     if request.method == 'GET':
         posts = Post.objects.all()
-        serializer = PostSerializer(posts, many=True)
+        serializer = PostListSerializer(posts, many=True)
+        
         return JsonResponse(serializer.data, status=status.HTTP_200_OK, safe=False)
     elif request.method == 'POST':
         setattr(request.data, '_mutable', True)
