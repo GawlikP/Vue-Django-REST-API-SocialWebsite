@@ -47,7 +47,8 @@ export default {
         return {
             post: {
                 'title': '',
-                'content': ''
+                'content': '',
+                
             },
             posted: 0,
             errors:{},
@@ -56,6 +57,9 @@ export default {
     },
     methods:{
          async createPost(){
+
+
+
              var response  = await fetch('http://localhost:8000/posts/',{
                  method: 'post',
                  headers: {

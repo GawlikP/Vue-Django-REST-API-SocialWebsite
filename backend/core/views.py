@@ -48,7 +48,8 @@ def accounts_login(request, format=None):
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
 def auth_test_view(request):
-    return JsonResponse({'response' : 'U HAVE PERMISSION!'}, status=status.HTTP_200_OK)
+    user = request.user
+    return JsonResponse({'response' : 'U HAVE PERMISSION!', 'user' : user.username}, status=status.HTTP_200_OK)
 
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
@@ -63,3 +64,4 @@ def check_token(request ):
                 JsonResponse(serializer.errors, status=status.HTTP_406_NOT_ACCEPTABLE)
         else:
             JsonResponse(serializer.errors, status=status.HTTP_406_NOT_ACCEPTABLE)
+

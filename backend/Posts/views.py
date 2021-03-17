@@ -4,7 +4,7 @@ from django.http import HttpResponse, JsonResponse
 #? Create your views here.
 
 from rest_framework.decorators import api_view, permission_classes
-from rest_framework.permissions import AllowAny
+from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.parsers import JSONParser
 
 from Posts.serializers import PostSerializer
@@ -33,7 +33,7 @@ def post_list(request, format=None):
 #? endpoint dla modyfikacji i detali postow 
 
 @api_view(['GET', 'PUT'])
-@permission_classes([AllowAny])
+@permission_classes([IsAuthenticated])
 def post_detail(request, pk, format=None):
 
     #! pk = PRIMARY KEY
