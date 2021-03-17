@@ -26,9 +26,7 @@ def post_list(request, format=None):
     elif request.method == 'POST':
         setattr(request.data, '_mutable', True)
         data = request.data 
-        print(data)
         data['author'] = request.user.id
-        print(data)
         serializer = PostSerializer(data= data)
         if serializer.is_valid():
             serializer.save()
