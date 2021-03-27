@@ -60,3 +60,12 @@ class AuthTokenSerializer(serializers.Serializer):
             raise serializers.ValidationError({'error': 'Token does not exist!'})
         
         return False
+
+class AccountSerializer(serializers.ModelSerializer):
+
+     class Meta:
+        model = Account 
+        fields = ['id','email', 'username', 'password']
+        extra_kwargs = {
+            'password': {'write_only': True}
+        }
