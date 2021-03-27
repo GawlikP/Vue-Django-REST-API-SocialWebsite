@@ -4,10 +4,10 @@ from django.http import HttpResponse, JsonResponse
 #? Create your views here.
 
 from rest_framework.decorators import api_view, permission_classes
-from rest_framework.permissions import AllowAny
+from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.parsers import JSONParser
 
-from Posts.serializers import PostSerializer
+from Posts.serializers import PostSerializer, PostListSerializer
 from Posts.models import Post
 from rest_framework import status 
 
@@ -22,9 +22,13 @@ def post_list(request, format=None):
     if request.method == 'GET':
         posts = Post.objects.all()
         serializer = PostSerializer(posts, many=True)
+        
         return JsonResponse(serializer.data, status=status.HTTP_200_OK, safe=False)
     elif request.method == 'POST':
-        serializer = PostSerializer(data= request.data)
+        #setattr(request.data, '_mutable', True)
+        data = request.data 
+        data['author'] = request.user.id
+        serializer = PostSerializer(data= data)
         if serializer.is_valid():
             serializer.save()
             return JsonResponse(serializer.data, status=status.HTTP_201_CREATED)
@@ -33,7 +37,7 @@ def post_list(request, format=None):
 #? endpoint dla modyfikacji i detali postow 
 
 @api_view(['GET', 'PUT'])
-@permission_classes([AllowAny])
+@permission_classes([IsAuthenticated])
 def post_detail(request, pk, format=None):
 
     #! pk = PRIMARY KEY
