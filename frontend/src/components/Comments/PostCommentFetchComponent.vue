@@ -6,7 +6,7 @@
 
     <tbody v-for="comment in comments" :key="comment.id" style="text-align:left">
         <tr>
-           <strong>{{comment.author}}</strong>
+           <strong>{{authors[comment.id].username}}</strong>
         </tr>
         <tr>
         {{comment.content}}
@@ -56,6 +56,17 @@ export default {
             comments.forEach(comment => {
                 if (comment['post'] === this.post_id)this.comments.push(comment)
             });
+
+            this.comments.forEach(comment => {
+                    this.getAuthors(comment, header);
+            });
+        },
+        async getAuthors(comment, headers){
+               
+
+            var response = await fetch(`http://localhost:8000/accounts/${comment.author}`, {headers: headers});
+                    var json = await response.json();
+                    this.authors[comment.id] = json;
         }
     }
 }
