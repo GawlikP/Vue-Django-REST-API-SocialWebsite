@@ -11,12 +11,18 @@ from django.http import JsonResponse
 from rest_framework.authtoken.models import Token
 from .models import Account
 
-from .serializers import ResterSerialier, LoginSerializer, AuthTokenSerializer
+from .serializers import ResterSerialier, LoginSerializer, AuthTokenSerializer, AccountSerializer
 
 
-@api_view(['POST'])
+@api_view(['GET','POST'])
 @permission_classes([AllowAny])
 def accounts_list(request, fromat=None):
+    if request.method == 'GET':
+        accounts = Account.objects.all()
+        serializer = AccountSerializer(accounts, many=True)
+        return JsonResponse(serializer.data, status=status.HTTP_200_OK, safe=False)
+
+
     if request.method == 'POST':
         serialzier = ResterSerialier(data= request.data)
         data = {}
@@ -29,6 +35,22 @@ def accounts_list(request, fromat=None):
         else:
             return JsonResponse(serialzier.errors, status=status.HTTP_406_NOT_ACCEPTABLE)
         
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def account_defails(request, pk, format=None):
+    
+
+        try:
+            acc = Account.objects.get(pk= pk)
+        except Account.DoesNotExist:
+            return HttpResponse(status=status.HTTP_404_NOT_FOUND)
+
+        if request.method == 'GET':
+            serializer = AccountSerializer(acc)
+            return JsonResponse(serializer.data)
+
+
+
 @api_view(['POST'])
 @permission_classes([AllowAny])
 def accounts_login(request, format=None):
@@ -48,6 +70,7 @@ def accounts_login(request, format=None):
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
 def auth_test_view(request):
+    user = request.user
     return JsonResponse({'response' : 'U HAVE PERMISSION!'}, status=status.HTTP_200_OK)
 
 @api_view(['POST'])
@@ -63,3 +86,4 @@ def check_token(request ):
                 JsonResponse(serializer.errors, status=status.HTTP_406_NOT_ACCEPTABLE)
         else:
             JsonResponse(serializer.errors, status=status.HTTP_406_NOT_ACCEPTABLE)
+

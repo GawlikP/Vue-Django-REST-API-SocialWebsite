@@ -8,7 +8,7 @@
         <tr>
            <strong>{{post.title}}</strong>
         </tr>
-        <tr>
+        <tr> Author: {{authors[post.author].email}} <br>
         {{post.content}}
         </tr>
         <tr>
@@ -46,6 +46,7 @@ export default {
         return {
             posts: [],
             hearthed: [],
+            authors: [],
         }
     },
     async created(){
@@ -57,24 +58,55 @@ export default {
     
     methods:{
         async getPosts(){
-            var response =  await fetch('http://localhost:8000/posts/');
+
+            var token = await window.sessionStorage.getItem('token')
+                    
+                    const headers = {
+                        
+                            'Authorization': `Token ${token}`,
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json' 
+                    }
+
+            var response =  await fetch('http://localhost:8000/posts/', {headers: headers});
             this.posts = await response.json()
             this.posts.forEach(post => {
                 if(typeof this.hearthed[post.id] === 'undefined')this.hearthed[post.id] = false;
         });
+            this.posts.forEach(post => {
+                    this.setAuthors(post, headers);
+                });
+
            console.log(this.hearthed) 
+        },
+        async setAuthors(post, headers){
+
+            
+
+            var response = await fetch(`http://localhost:8000/accounts/${post.author}`, {headers: headers});
+                    var json = await response.json();
+                    this.authors[post.id] = json;
         },
         async giveHearth(post){
             console.log(post);
             post.hearts +=1;
+            var postr = post;
+            postr.author_name = null; 
+
+            var token = await window.sessionStorage.getItem('token')
+                    
+                    const headers = {
+                        
+                            'Authorization': `Token ${token}`,
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json' 
+                    }
 
             this.hearthed[post.id] = true;
-            var response = await fetch(`http://localhost:8000/posts/${post.id}/`, {
+            var response = await fetch(`http://localhost:8000/posts/${postr.id}/`, {
                 method: 'put',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(post)
+                headers: headers,
+                body: JSON.stringify(postr)
             });
             this.posts.push(await response.json());
            
