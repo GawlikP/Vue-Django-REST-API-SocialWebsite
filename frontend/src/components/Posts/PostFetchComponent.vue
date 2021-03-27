@@ -8,7 +8,7 @@
         <tr>
            <strong>{{post.title}}</strong>
         </tr>
-        <tr> Author: {{authors[post.author].email}} <br>
+        <tr> <b> Author: {{authors[post.author].username}}  </b><br>
         {{post.content}}
         </tr>
         <tr>
@@ -18,6 +18,11 @@
                       <i v-else class="fas fa-heart"   style="color:red"></i> 
                         {{post.hearts}}
             </p>  
+        </tr>
+
+        <tr>
+            <PostCommentFetchComponent v-bind:post_id="post.id" />
+           
         </tr>
         <hr> 
         
@@ -32,13 +37,13 @@
 </template>
 <script>
     import { MDBTable  } from "mdb-vue-ui-kit";
-    
+    import  PostCommentFetchComponent  from '@/components/Comments/PostCommentFetchComponent.vue';
 
 export default {
  
     name:'PostFetchComponent',
      components: {
-      
+      PostCommentFetchComponent,
       MDBTable 
      // MDBBtn
     },
