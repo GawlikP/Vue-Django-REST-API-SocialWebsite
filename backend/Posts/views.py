@@ -21,11 +21,11 @@ from rest_framework import status
 def post_list(request, format=None):
     if request.method == 'GET':
         posts = Post.objects.all()
-        serializer = PostListSerializer(posts, many=True)
+        serializer = PostSerializer(posts, many=True)
         
         return JsonResponse(serializer.data, status=status.HTTP_200_OK, safe=False)
     elif request.method == 'POST':
-        setattr(request.data, '_mutable', True)
+        #setattr(request.data, '_mutable', True)
         data = request.data 
         data['author'] = request.user.id
         serializer = PostSerializer(data= data)

@@ -58,13 +58,18 @@ export default {
     methods:{
          async createPost(){
 
-
+             var auth = await window.sessionStorage.getItem('token')
+                    
+                    const headers = {
+                        
+                            'Authorization': `Token ${auth}`,
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json' 
+                    }
 
              var response  = await fetch('http://localhost:8000/posts/',{
                  method: 'post',
-                 headers: {
-                     'Content-Type': 'application/json'
-                 },
+                 headers: headers,
                  body: JSON.stringify(this.post)
              });
              var res = await response;

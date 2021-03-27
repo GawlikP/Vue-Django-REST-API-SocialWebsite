@@ -13,16 +13,15 @@ class PostSerializer(serializers.ModelSerializer):
    
 class PostListSerializer(serializers.ModelSerializer):
 
-    author_name = serializers.SerializerMethodField()
+
 
     class Meta:
         model = Post
-        fields = ['id', 'created', 'deleted', 'title', 'content', 'hearts', 'author', 'author_name']
+        fields = ['id', 'created', 'deleted', 'title', 'content', 'hearts', 'author', 'author']
         extra_kwargs = {
             'author': {'write_only' : True}
         }
-    def get_author_name(self, obj):
-        return  obj.author.username
+  
 
     
 
