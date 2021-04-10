@@ -65,8 +65,8 @@ export default {
                
 
             var response = await fetch(`http://localhost:8000/accounts/${comment.author}`, {headers: headers});
-                    var json = await response.json();
-                    this.authors[comment.id] = json;
+            var json = await response.json();
+            this.authors[comment.id] = json;
         }
     }
 }
