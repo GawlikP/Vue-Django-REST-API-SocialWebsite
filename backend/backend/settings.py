@@ -47,6 +47,7 @@ INSTALLED_APPS = [
    # 'Accounts',
     'core',
     'comments.apps.CommentsConfig',
+    'hearts.apps.HeartsConfig',
 ]
 
 MIDDLEWARE = [
