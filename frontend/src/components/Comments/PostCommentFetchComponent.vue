@@ -3,7 +3,7 @@
   
         <div class="container" >
     <a data-toggle="tooltip" title="Komentarze" class="m-2"  role="button" style="color: rgb(59, 89, 152);" @click="collapse1 = !collapse1"  >
-        <i class="fas fa-comments fa-lg"></i>
+        <i class="fas fa-comments fa-lg"></i><MDBBadge color="danger" pill notification v-if="licznik">{{licznik}}</MDBBadge>
     <MDBIcon iconstyle="fab"  size="lg"></MDBIcon>
   </a> 
     
@@ -19,20 +19,21 @@
                 <tr style="color:black">
                     {{comment.content}}
                 </tr>
+                <br>
             </table>
         </MDBCollapse> 
-               
+                 
     </tbody>
-    
+     
         <MDBCollapse id="collapsibleContent1" v-model="collapse1">
-            <div class="form-outline mt-4">
+           
               <form @submit.prevent="createComment">
-                    <MDBInput  label="twój komentarz..." white style="background-color:silver" size="lg" type="text"  class="w-50" v-model="comment.content" />
-                    <br>
+                    <MDBInput  label="twój komentarz..."   size="lg" type="text"  col-md v-model="comment.content" />
+                    <br> 
                     <MDBBtn color="danger" type="submit" >Dodaj komentarz</MDBBtn >
-                    
+                   
                 </form>
-            </div>     
+              
         </MDBCollapse> 
                 
     </div>
@@ -41,7 +42,7 @@
 
 <script>
   
-     import { MDBCollapse, MDBIcon ,MDBInput, MDBBtn } from "mdb-vue-ui-kit";
+     import { MDBCollapse, MDBIcon ,MDBInput, MDBBtn,MDBBadge } from "mdb-vue-ui-kit";
      import { ref } from 'vue';
 //import { MDBTable  } from "mdb-vue-ui-kit";
 export default {
@@ -54,7 +55,8 @@ export default {
           MDBCollapse,
           MDBIcon,
           MDBInput,
-          MDBBtn
+          MDBBtn,
+          MDBBadge
          
           
      //   MDBTable
@@ -72,13 +74,15 @@ export default {
                 'post': `${this.post_id}`  
             },
             posted: 0,
-            errors:{}
-
+            errors:{},
+            licznik:0
         }
     },
     methods:{
         async getComments(){
             this.comments=[];
+            this.licznik=0;
+            var licznik=0;
             var token = await window.sessionStorage.getItem('token');
             const header = {
                 'Authorization': `Token ${token}`,
@@ -88,14 +92,17 @@ export default {
             var response = await fetch('http://localhost:8000/comments/', {headers: header})
             var comments = await response.json()
             comments.forEach(comment => {
-                if (comment['post'] === this.post_id)this.comments.push(comment)
+                if (comment['post'] === this.post_id){this.comments.push(comment)
+                   licznik++;}
             });
+           
             var temp = this.comments;
             temp.forEach(comment => {
                 
                 this.getAuthors(comment);
             });
             this.comments = await temp;
+            this.licznik=licznik;
         },
         async getAuthors(comment){
                
