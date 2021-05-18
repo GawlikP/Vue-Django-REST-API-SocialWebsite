@@ -1,7 +1,7 @@
 <template>
     <div  >
          <form @submit.prevent="createComment">
-                    <MDBInput  label="twój komentarz..." white style="background-color:silver" size="lg" type="text"  class="w-50" v-model="comment.content" />
+                    <MDBInput  label="twój komentarz"  style="background-color:silver" size="lg" type="text"  class="w-50" v-model="comment.content" />
                     <br>
                     <MDBBtn color="danger" type="submit" onclick="javascript:window.location.reload()">Dodaj komentarz</MDBBtn >
                     
