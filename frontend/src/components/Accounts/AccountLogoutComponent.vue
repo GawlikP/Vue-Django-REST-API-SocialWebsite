@@ -13,6 +13,10 @@ export default ({
     components: {
       MDBBtn
     },
+    created: function (){
+        window.sessionStorage.clear()
+        this.ChangeRoute('/')   
+    },
     methods: {
             logout(){
                     window.sessionStorage.clear()
