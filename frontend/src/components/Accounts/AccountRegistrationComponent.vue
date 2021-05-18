@@ -1,5 +1,5 @@
 <template>
-    <div id="Account RegisterComponent">
+    <div id="AccountRegistrationComponent">
 
         
 
@@ -30,7 +30,7 @@ import { MDBInput, MDBBtn, } from 'mdb-vue-ui-kit';
 export default {
     // nazwa komponentu, odpowiada tagowi jakiego trzeba uzyc
     // aby wywolac go w innym komponencie lub widoku
-    name: 'AccountRegisterComponent',
+    name: 'AccountRegistrationComponent',
     components: {
       MDBInput,
       MDBBtn,
@@ -64,7 +64,7 @@ export default {
             // nastepnie okresalmy headery ( 'Content-Type', 'Authorization')
             // w sekcji body nadajemy naszego jsona z trescia parametrow 
             //
-            var response = await fetch('http://localhost:8000/accounts/',{
+            var response = await fetch('http://localhost:8000/registration/',{
                 method: 'post',
                 headers: {
                     'Content-Type': 'application/json'
@@ -82,5 +82,9 @@ export default {
 }
 </script>
 <style scoped>
-
+.btn-danger:hover, .btn-outline-danger:hover{
+  background-color: rgb(66, 7, 10);
+  border-color: rgb(255, 255, 255);
+  color: white;
+}
 </style>

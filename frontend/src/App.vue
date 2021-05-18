@@ -3,8 +3,6 @@
     <!-- <div>{{this.$route.name}}</div> -->
     <div id="nav" class="d-flex flex-row flex-wrap justify-content-center align-content-lg-center align-content-start py-1 px-3 mb-5" v-if="`${this.$route.name}`!=`Home`">
       <router-link class="col-lg-auto text-nowrap mx-1 my-0" v-for="url in urls" v-bind:key="url.link" v-bind:to="`${ url.link }`">{{ url.title }}</router-link>
-      <router-link v-if="true" class="col-lg-auto text-nowrap mx-1 my-0" to="/accounts">Rejestracja</router-link>
-      <router-link v-if="true" class="col-lg-auto text-nowrap mx-1 my-0" to="/login">Zaloguj się</router-link>
       <AuthorizeGuardComponent />
     </div>
     <router-view/>
@@ -54,7 +52,7 @@ body{
 
 #nav {
   height: 60px;
-  background-color: #df5656;
+  background-color: #F93154;
   box-shadow: 0px 8px 10px rgba(0,0,0,0.7);
 }
 
