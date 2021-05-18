@@ -1,42 +1,58 @@
 <template>
 
     <div id="PostFetchComponent">
-        <div class="container" >
-             <MDBTable>
-
-    <tbody v-for="post in posts" :key="post.id" style="text-align:left">
-        <tr>
-           <strong>{{post.title}}</strong>
-        </tr>
-        <tr> <b> Author: {{authors[post.author].username}}  </b><br>
-        {{post.content}}
-        </tr>
-        <tr>
-            <p class="text-center">
-                
-              <i data-toggle="tooltip" title="Lubię" @click="giveHearth(post)" v-if="hearthed[post.id] == false" class="far fa-heart" style="color:red"></i>
-                      <i v-else class="fas fa-heart"   style="color:red"></i> 
-                        {{post.hearts}}
-            </p>  
-        </tr>
-
-        <tr>
-            <PostCommentFetchComponent v-bind:post_id="post.id" />
-           
-        </tr>
-        <hr> 
+         
+        <div class="container">
         
-       
-    </tbody>
-  </MDBTable>
-            
-            
+               <div class="card mt-4 w-75 p-3" v-for="post in posts" :key="post.id">
+
+                    <div id ="big_mommy" style="text-align:left">
+                        <div style="display: inline-block;">
+                           
+                            <img src="https://data.apksum.com/8d/com.tivola.myredpanda/1.1/icon.png" class="rounded-circle"  width="50" height="50" alt="avatar" />
+                        </div>
+                    
+                        <div style="display: inline-block;">
+                            <h5 class="mx-2 text-black" >{{authors[post.author].username}}</h5>
+                         </div>
+                    </div>
+
+
+                
+                
+                   
+                   
+                    
+                    <div class="card-body">
+                        <h6 class="card-title text-black" style="text-align:left">{{post.title}}</h6>
+
+                            <p class="card-text  text-black mt-4" style="text-align:left">
+                                {{post.content}}
+                            </p>
+
+        
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <i data-toggle="tooltip" title="Lubię to!" @click="giveHearth(post)" v-if="hearthed[post.id] == false" class="far fa-heart" style="color:red"></i>
+                                <i v-else class="fas fa-heart"   style="color:red"></i>
+                                <p style="color:black; display: inline-block; padding: 3px;">{{post.hearts}}</p>
+                            </div>
+
+                            <div class="col-md-12">
+                                <PostCommentFetchComponent v-bind:post_id="post.id" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
         </div>
     </div>
 
+
 </template>
+
 <script>
-    import { MDBTable  } from "mdb-vue-ui-kit";
+
     import  PostCommentFetchComponent  from '@/components/Comments/PostCommentFetchComponent.vue';
 
 export default {
@@ -44,7 +60,8 @@ export default {
     name:'PostFetchComponent',
      components: {
       PostCommentFetchComponent,
-      MDBTable 
+
+       
      // MDBBtn
     },
     data(){
@@ -85,12 +102,14 @@ export default {
            console.log(this.hearthed) 
         },
         async setAuthors(post, headers){
-
+                
+                    
+                   
             
 
             var response = await fetch(`http://localhost:8000/accounts/${post.author}`, {headers: headers});
                     var json = await response.json();
-                    this.authors[post.id] = json;
+                    this.authors[post.author] = json;
         },
         async giveHearth(post){
             console.log(post);
@@ -118,6 +137,8 @@ export default {
             this.getPosts();
         }
     },
+    
+   
 
 }
 </script>
