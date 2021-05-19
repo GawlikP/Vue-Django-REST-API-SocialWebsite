@@ -7,7 +7,7 @@ from .views import commentslikes_list, commentslike_detail
 
 urlpatterns = [
     path('', commentslikes_list),
-    pat('<int:pk>/', commentslike_detail ),
+    path('<int:pk>/', commentslike_detail ),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)

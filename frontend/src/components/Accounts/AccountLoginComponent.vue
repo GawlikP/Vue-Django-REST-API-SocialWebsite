@@ -49,6 +49,7 @@ export default {
             if(response.status == 200){
                 window.sessionStorage.setItem("token",output["token"]);
                 window.sessionStorage.setItem("username",output["username"]);
+       
                 // window.location.reload(true);
                 this.$router.push('/posts')
                 //alert(window.sessionStorage.getItem("token") + window.sessionStorage.getItem("username"));

@@ -14,6 +14,7 @@ from rest_framework.parsers import JSONParser
 # Create your views here.
 
 from .models import Heart
+from core.models import Account
 from .serializers import HeartSerializer
 
 class HeartViewSet(viewsets.ModelViewSet):
@@ -25,9 +26,14 @@ class HeartViewSet(viewsets.ModelViewSet):
     def create(self, request):
         data = request.data
         data['account'] = request.user.id
-        serializer = serializer_class(data= data)
+        accs = Heart.objects.filter(post=data['post'], account=data['account'])
+        if accs.exists():
+            data2 = {}
+            data2['error'] = 'You cannot like the same post!'
+            return JsonResponse(data=data2, status=status.HTTP_406_NOT_ACCEPTABLE)
+        serializer = self.serializer_class(data= data)
         if serializer.is_valid():
-            serialzier.save()
+            serializer.save()
             return JsonResponse(serializer.data, status=status.HTTP_201_CREATED)
         return JsonResponse(serializer.errors, status=status.HTTP_406_NOT_ACCEPTABLE)
 
