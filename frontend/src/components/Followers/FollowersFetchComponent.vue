@@ -1,34 +1,29 @@
 <template>
+ 
+<div class="container-fluid mt-4">
+  
+     <h2>followers</h2>
+  <table class="table  table-hover table-borderless " style="color:white;">
     
-   <div class="container">
-  <h2>Followersi</h2>
-            
-  <table class="table  table-hover table-borderless" style="color:white;">
-    <thead>
-      <tr>
-        
-        
-      </tr>
-    </thead>
     <tbody>
-      <tr style="border-radius: 25px;">
-        <td>zdjecie</td>
-        <td>nick</td>
-        
+      <tr style="border-radius: 25%;">
+         <th>zdjecie</th>
+         <th>nick</th>
       </tr>
-      <tr>
-        <td>zdjecie</td>
-        <td>nick</td>
-       
+
+       <tr style="border-radius: 25%;">
+         <th>zdjecie</th>
+         <th>nick</th>
       </tr>
-      <tr>
-        <td>zdjecie</td>
-        <td>nick</td>
-       
+
+      <tr style="border-radius: 25%;">
+         <th>zdjecie</th>
+         <th>nick</th>
       </tr>
     </tbody>
   </table>
 </div>
+
 </template>
 <script>
 

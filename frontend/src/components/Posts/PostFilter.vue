@@ -3,10 +3,10 @@
 
   <div class="d-grid gap-4 col-12 mx-auto">
 
-      <br>
-      <h5 style=" font-size: 20px;">Sortuj</h5>
-    <MDBBtn size="lg" outline="danger" rounded>polubienia</MDBBtn>
-    <MDBBtn size="lg"  outline="danger" rounded>komentarze</MDBBtn>
+      
+      <h5>Sortuj</h5>
+    <MDBBtn size="md" outline="danger" rounded>polubienia</MDBBtn>
+    <MDBBtn size="md"  outline="danger" rounded>komentarze</MDBBtn>
     
   </div>
 </template>
