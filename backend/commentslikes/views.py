@@ -1,8 +1,4 @@
 from django.shortcuts import render
-<<<<<<< HEAD
-
-# Create your views here.
-=======
 from django.http import HttpResponse, JsonResponse
 from rest_framework import permissions, serializers
 from rest_framework.settings import perform_import
@@ -53,4 +49,3 @@ def commentslike_detail(request, pk, format=None):
             serializer.save()
             return JsonResponse(serializer.data, status=status.HTTP_200_OK)
         return JsonResponse(serializer.errors, status=status.HTTP_406_NOT_ACCEPTABLE)
->>>>>>> ab96b025ec016009b48760b46ca03cd2404e4212

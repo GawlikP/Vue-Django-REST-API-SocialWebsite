@@ -16,5 +16,7 @@ class Heart(models.Model):
     def __str__(self):
         return self.post.title + ":" + self.account.username
 
+
+
     class Meta:
         ordering = ['created']
