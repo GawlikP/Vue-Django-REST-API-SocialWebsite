@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from Posts.models import Post
+from .models import Post
 from core.models import Account
 
 

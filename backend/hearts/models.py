@@ -2,7 +2,7 @@ from django.db import models
 
 from core.models import Account
 
-from Posts.models import Post
+from posts.models import Post
 
 # Create your models here.
 
@@ -15,6 +15,8 @@ class Heart(models.Model):
 
     def __str__(self):
         return self.post.title + ":" + self.account.username
+
+
 
     class Meta:
         ordering = ['created']

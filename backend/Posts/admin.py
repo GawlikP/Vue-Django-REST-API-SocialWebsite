@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 
-from Posts.models import Post
+from .models import Post
 # Register your models here.
 
 
