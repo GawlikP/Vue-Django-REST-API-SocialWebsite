@@ -2,7 +2,7 @@ from django.db import models
 
 from core.models import Account
 
-from Posts.models import Post
+from posts.models import Post
 
 # Create your models here.
 

@@ -43,12 +43,20 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'corsheaders',
-    'Posts.apps.PostsConfig',
+    'posts',
    # 'Accounts',
     'core',
+<<<<<<< HEAD
     'comments.apps.CommentsConfig',
     'hearts.apps.HeartsConfig',
     'profiles'
+=======
+    'comments',
+    'hearts',
+    'profiles',
+    'commentslikes',
+    'follows',
+>>>>>>> ab96b025ec016009b48760b46ca03cd2404e4212
 ]
 
 MIDDLEWARE = [

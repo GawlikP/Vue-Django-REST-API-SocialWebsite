@@ -8,8 +8,8 @@
       <MDBCol class="row col-lg-10 p-5 mw-600px">
         <h1 class="text-start font-weight-bold mb-4">Dołącz do pandastycznej społeczności!</h1>
         <h4 class="text-start font-weight-lighter mb-3">Zostań pandą już dziś!</h4>
-        <MDBBtn color="danger" @click="goTo('\accounts')" rounded size="lg" class="mb-2">Zarejestruj się</MDBBtn>           
-        <MDBBtn outline="danger" @click="goTo('\login')" rounded  size="lg">Zaloguj się</MDBBtn>       
+        <MDBBtn color="danger" @click="goTo('/registration')" rounded size="lg" class="mb-2">Zarejestruj się</MDBBtn>           
+        <MDBBtn outline="danger" @click="goTo('/login')" rounded  size="lg">Zaloguj się</MDBBtn>       
       </MDBCol>     
     </div>   
   </div> 
