@@ -7,8 +7,8 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.parsers import JSONParser
 
-from Posts.serializers import PostSerializer, PostListSerializer
-from Posts.models import Post
+from .serializers import PostSerializer, PostListSerializer
+from .models import Post
 from rest_framework import status 
 
 

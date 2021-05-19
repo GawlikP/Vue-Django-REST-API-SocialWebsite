@@ -1,6 +1,6 @@
 from django.urls import path
 from rest_framework.urlpatterns import format_suffix_patterns
-from Posts.views import post_list, post_detail
+from posts.views import post_list, post_detail
 
 
 urlpatterns = [
