@@ -1,4 +1,7 @@
+from django.http.response import JsonResponse
 from django.shortcuts import render
+from rest_framework import serializers
+from rest_framework.serializers import Serializer
 
 from rest_framework.viewsets import ModelViewSet
 
@@ -19,4 +22,13 @@ class HeartViewSet(viewsets.ModelViewSet):
     serializer_class = HeartSerializer
     permission_classes = [IsAuthenticated]  
 
-    
+    def create(self, request):
+        data = request.data
+        data['account'] = request.user.id
+        serializer = serializer_class(data= data)
+        if serializer.is_valid():
+            serialzier.save()
+            return JsonResponse(serializer.data, status=status.HTTP_201_CREATED)
+        return JsonResponse(serializer.errors, status=status.HTTP_406_NOT_ACCEPTABLE)
+
+ 
