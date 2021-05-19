@@ -2,7 +2,7 @@ from django.urls import path
 from rest_framework.urlpatterns import format_suffix_patterns
 
 from .views import accounts_list, auth_test_view, accounts_login, check_token, account_defails
-from .views import account_hearts, account_profile
+from .views import account_hearts, account_profile, account_commentslikes
 from rest_framework.authtoken.views import obtain_auth_token
 
 urlpatterns = [
