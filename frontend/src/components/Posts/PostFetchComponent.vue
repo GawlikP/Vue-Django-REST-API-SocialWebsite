@@ -1,7 +1,14 @@
 <template>
 
-    <div id="PostFetchComponent">
+    
+ 
+
+
+
+
+<div id="PostFetchComponent">
          
+
         <div class="container">
         
                <div class="card mt-4 w-75 p-3" v-for="post in posts" :key="post.id">
@@ -13,14 +20,13 @@
                         </div>
                     
                         <div style="display: inline-block;">
-                            <h5 class="mx-2 text-black" >{{authors[post.author].username}}</h5>
+                            <h5 class="mx-2 text-black" >{{authors[post.author].username}} </h5>
                          </div>
                     </div>
 
 
                 
                 
-                   
                    
                     
                     <div class="card-body">
@@ -33,21 +39,20 @@
         
 
                         <div class="row">
-                            <div class="col-md-12">
+                            <div style="display: inline;">
                                 <i data-toggle="tooltip" title="Lubię to!" @click="giveHearth(post)" v-if="hearthed[post.id] == false" class="far fa-heart" style="color:red"></i>
                                 <i v-else class="fas fa-heart"   style="color:red"></i>
                                 <p style="color:black; display: inline-block; padding: 3px;">{{post.hearts}}</p>
                             </div>
 
-                            <div class="col-md-12">
+                            <div style="display: inline;">
                                 <PostCommentFetchComponent v-bind:post_id="post.id" />
                             </div>
                         </div>
                     </div>
                 </div>
         </div>
-    </div>
-
+</div>
 
 </template>
 
