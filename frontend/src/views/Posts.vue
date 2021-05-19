@@ -20,7 +20,6 @@
 
       <div class="col-sm-2 ">
       <FollowersFetchComponent/>
-      Followers
       </div>
     </div>
 

@@ -1,14 +1,7 @@
 <template>
 
-    
- 
-
-
-
-
 <div id="PostFetchComponent">
          
-
         <div class="container">
         
                <div class="card mt-4 w-75 p-3" v-for="post in posts" :key="post.id">
@@ -16,7 +9,7 @@
                     <div id ="big_mommy" style="text-align:left">
                         <div style="display: inline-block;">
                            
-                            <img src="https://data.apksum.com/8d/com.tivola.myredpanda/1.1/icon.png" class="rounded-circle"  width="50" height="50" alt="avatar" />
+                            
                         </div>
                     
                         <div style="display: inline-block;">
@@ -24,9 +17,6 @@
                          </div>
                     </div>
 
-
-                
-                
                    
                     
                     <div class="card-body">
