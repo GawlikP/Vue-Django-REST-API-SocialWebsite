@@ -1,4 +1,6 @@
+from django.http.response import HttpResponse
 from django.shortcuts import render
+from rest_framework import serializers
 
 # Create your views here.
 
@@ -22,6 +24,12 @@ from profiles.serializers import ProfileSerializer
 
 from commentslikes.models import CommentLike
 from commentslikes.serializers import CommentLikeSerializer
+
+from follows.models import Follow
+from follows.serializers import FollowSerializer
+
+from posts.models import Post
+from posts.serializers import PostSerializer
 
 @api_view(['GET','POST'])
 @permission_classes([AllowAny])
@@ -134,6 +142,67 @@ def account_commentslikes(request, format=None):
         data = {}
         data['error'] = 'No commentslikes to return'
         return JsonResponse(data= data, status = status.HTTP_404_NOT_FOUND)
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def account_follows(request, format=None):
+    if request.method == 'GET':
+        account = request.user.id 
+        follows = Follow.objects.filter(following= account)
+        if follows.exists():
+            serializer = FollowSerializer(data= follows, many=True)
+            return JsonResponse(serializer.data, status=status.HTTP_200_OK)
+        data = {}
+        data['error'] = 'No follows to return'
+        return JsonResponse(data=data, status = status.HTTP_404_NOT_FOUND)
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def account_followers(request, format=None):
+    if request.method == 'GET':
+        account = request.user.id
+        following = Follow.objects.filter(follower= account)
+        if following.exists():
+            serializier = FollowSerializer(data= following,many= True)
+            return JsonResponse(serializer.data, status=status.HTTP_200_OK)
+        data = {}
+        data['error'] = 'No follows to return'
+        return JsonResponse(data=data, status= status.HTTP_404_NOT_FOUND)
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def account_id_posts(request,pk, format=None):
+    try:
+        acc = Account.objects.get(pk= pk)
+    except Account.DoesNotExist:
+        data = {}
+        data['error'] = 'Account does not exists'
+        return JsonResponse(data=data,status=status.HTTP_404_NOT_FOUND)
+
+    if request.method == 'GET':
+        posts = Post.objects.filter(author= acc)
+        if posts.exists():
+            serialzier = PostSerializer(data=posts, many=True)
+            return JsonResponse(serialzier.data, status=status.HTTP_200_OK)
+        data = {}
+        data['error'] = 'No posts to return'
+        return JsonResponse(data=data, status=status.HTTP_404_NOT_FOUND)
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def account_posts(request, format=None):
+    if request.method == 'GET':
+        account = request.user.id
+        posts = Post.objects.filter(author= account)
+        if posts.exists():
+            serializer = PostSerializer(data=posts, many=True)
+            return JsonResponse(serializer.data, status=status.HTTP_200_OK)
+        data = {}
+        data['error'] = 'No posts to return'
+        return JsonResponse(data=data, status=status.HTTP_404_NOT_FOUND)
+
+
+        
 
 
 
