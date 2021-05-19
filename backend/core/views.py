@@ -1,6 +1,7 @@
 from django.http.response import HttpResponse
 from django.shortcuts import render
 from rest_framework import serializers
+from rest_framework import decorators
 
 # Create your views here.
 
@@ -31,6 +32,8 @@ from follows.serializers import FollowSerializer
 from posts.models import Post
 from posts.serializers import PostSerializer
 
+from profiles.models import Profile
+
 @api_view(['GET','POST'])
 @permission_classes([AllowAny])
 def accounts_list(request, fromat=None):
@@ -45,6 +48,8 @@ def accounts_list(request, fromat=None):
         data = {}
         if serialzier.is_valid():
             account = serialzier.save()
+            profile = Profile(note="", description="", account=account)
+            profile.save()
             data = serialzier.data
             token = Token.objects.get(user=account)
             data['token'] = token.key
@@ -200,6 +205,31 @@ def account_posts(request, format=None):
         data = {}
         data['error'] = 'No posts to return'
         return JsonResponse(data=data, status=status.HTTP_404_NOT_FOUND)
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def account_id_profile(request, pk, format=None):
+
+    try:
+        acc = Account.objects.get(pk= pk)
+    except Account.DoesNotExist:
+        data = {}
+        data['error'] = 'Account does not exists'
+        return JsonResponse(data=data,status=status.HTTP_404_NOT_FOUND)
+
+    if request.method == 'GET':
+        
+        try:
+            profile = Profile.objects.get(account= acc)
+        except Profile.DoesNotExist:
+            data = {}
+            data['error'] = 'Profile does not exists'
+            return JsonResponse(data=data,status=status.HTTP_404_NOT_FOUND)  
+        
+        serializer = ProfileSerializer(profile)
+        
+        return JsonResponse(data=serializer.data, status=status.HTTP_200_OK)
+   
 
 
         
