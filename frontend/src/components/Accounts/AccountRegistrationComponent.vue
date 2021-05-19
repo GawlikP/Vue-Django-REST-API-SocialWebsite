@@ -64,7 +64,7 @@ export default {
             // nastepnie okresalmy headery ( 'Content-Type', 'Authorization')
             // w sekcji body nadajemy naszego jsona z trescia parametrow 
             //
-            var response = await fetch('http://localhost:8000/registration/',{
+            var response = await fetch('http://localhost:8000/accounts/',{
                 method: 'post',
                 headers: {
                     'Content-Type': 'application/json'
