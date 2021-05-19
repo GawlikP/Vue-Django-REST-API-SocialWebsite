@@ -22,7 +22,11 @@ def comments_list(request, format=None):
         serializer = CommentSerializer(comments, many=True)
         return JsonResponse(serializer.data, status=status.HTTP_200_OK, safe=False)
     elif request.method == 'POST':
-        serializer = CommentSerializer(data = request.data)
+        data= request.data
+        data['author'] = request.user.id
+
+        serializer = CommentSerializer(data = data)
+        
         if serializer.is_valid():
             serializer.save()
             return JsonResponse(serializer.data, status=status.HTTP_201_CREATED)

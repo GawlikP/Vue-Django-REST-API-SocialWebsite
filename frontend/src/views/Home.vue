@@ -63,8 +63,8 @@ export default {
 }
 
 .btn-danger:hover, .btn-outline-danger:hover{
-  background-color: rgb(77, 170, 165);
-  border-color: plum;
+  background-color: rgb(66, 7, 10);
+  border-color: rgb(255, 255, 255);
   color: white;
 }
 .mw-600px{

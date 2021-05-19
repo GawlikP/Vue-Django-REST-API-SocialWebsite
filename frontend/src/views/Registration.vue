@@ -4,7 +4,7 @@
         <h1 style="color: white">Utwórz konto</h1>    
   
             <br>
-            <AccountRegisterComponent />
+            <AccountRegistrationComponent />
     </center>
 
   </div>
@@ -12,12 +12,12 @@
 
 <script>
 // @ is an alias to /src
-import AccountRegisterComponent from '@/components/Accounts/AccountRegisterComponent.vue'
+import AccountRegistrationComponent from '@/components/Accounts/AccountRegistrationComponent.vue'
 
 export default {
-  name: 'Accounts',
+  name: 'Registration',
   components: {
-    AccountRegisterComponent,
+    AccountRegistrationComponent,
   }
 }
 </script>

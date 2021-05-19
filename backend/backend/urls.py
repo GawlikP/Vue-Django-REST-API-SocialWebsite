@@ -24,4 +24,5 @@ urlpatterns = [
     path('accounts/', include('core.urls')),
     path('comments/', include('comments.urls')),
     path('hearts/', include('hearts.urls')),
+    path('profiles/', include('profiles.urls')),
 ]
