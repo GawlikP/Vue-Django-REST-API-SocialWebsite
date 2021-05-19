@@ -40,8 +40,8 @@
 
                         <div class="row">
                             <div style="display: inline;">
-                                <i data-toggle="tooltip" title="Lubię to!" @click="giveHearth(post)" v-if="hearthed[post.id] == false" class="far fa-heart" style="color:red"></i>
-                                <i v-else class="fas fa-heart"   style="color:red"></i>
+                                <i data-toggle="tooltip" title="Lubię to!" @click="giveHearth(post)"  class="far fa-heart" style="color:red"></i>
+                           
                                 <p style="color:black; display: inline-block; padding: 3px;">{{post.hearts}}</p>
                             </div>
 
@@ -71,6 +71,7 @@ export default {
             posts: [],
             hearthed: [],
             authors: [],
+            hearts: [],
         }
     },
     async created(){
@@ -81,6 +82,24 @@ export default {
     },
     
     methods:{
+        async getHearts(){
+            var token = await window.sessionStorage.getItem('token')
+                    
+                    const headers = {
+                        
+                            'Authorization': `Token ${token}`,
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json' 
+                    }
+
+                 return this.axios.get(`http://localhost:8000/hearts/`, {headers: headers}).then(response => {
+                console.log(response.data)
+
+                this.hearts = response.data
+                
+
+            })
+        },
         async getPosts(){
             var token = await window.sessionStorage.getItem('token')
                     
@@ -92,13 +111,21 @@ export default {
                     }
             var response =  await fetch('http://localhost:8000/posts/', {headers: headers});
             this.posts = await response.json()
-            this.posts.forEach(post => {
-                if(typeof this.hearthed[post.id] === 'undefined')this.hearthed[post.id] = false;
-        });
+           
             this.posts.forEach(post => {
                     this.setAuthors(post, headers);
                 });
-           console.log(this.hearthed) 
+ 
+            await this.getHearts();
+            this.posts.forEach(post =>{
+                post.hearts = 0;
+                this.hearts.forEach( heart =>{
+                    if(post.id == heart.post){
+                    post.hearts++;
+                }
+                });
+                
+            });
         },
         async setAuthors(post, headers){
                 
@@ -110,10 +137,12 @@ export default {
                     this.authors[post.author] = json;
         },
         async giveHearth(post){
-            console.log(post);
+            
             post.hearts +=1;
-            var postr = post;
-            postr.author_name = null; 
+          //  var postr = post;
+            
+           
+
             var token = await window.sessionStorage.getItem('token')
                     
                     const headers = {
@@ -122,14 +151,18 @@ export default {
                             'Accept': 'application/json',
                             'Content-Type': 'application/json' 
                     }
+                    var data = {'post' : `${post.id}`}
             this.hearthed[post.id] = true;
-            var response = await fetch(`http://localhost:8000/posts/${postr.id}/`, {
-                method: 'put',
+            var response = await fetch(`http://localhost:8000/hearts/`, {
+                method: 'post',
                 headers: headers,
-                body: JSON.stringify(postr)
+                body: JSON.stringify(data)
             });
-            this.posts.push(await response.json());
-           
+            var res = await response;
+            if(res.status == 406){
+                alert('Nie mozesz znow polubic tego samego posta!')
+            }
+            console.log(res);
             this.getPosts();
         }
     },

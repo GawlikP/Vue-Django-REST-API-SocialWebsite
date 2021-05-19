@@ -12,6 +12,7 @@ class ResterSerialier(serializers.ModelSerializer):
         fields = ['email', 'username', 'password', 'password2']
         extra_kwargs = {
             'password': {'write_only': True}
+            
         }
 
     def save(self):
