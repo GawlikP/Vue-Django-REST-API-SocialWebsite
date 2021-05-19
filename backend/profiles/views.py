@@ -39,12 +39,19 @@ def profile_detail(request, pk, format=None):
     except Profile.DoesNotExist:
         data = {}
         data['error'] = 'Profile does not exist'
-        return JsonResponse(json.dumps(data),status=status.HTTP_404_NOT_FOUND)
+        return JsonResponse(json.dumps(data),status=status.HTTP_404_NOT_FOUND, safe=False)
+    
     if request.method == 'GET':
         serializer = ProfileSerializer(profile)
         return JsonResponse(serializer.data, status=status.HTTP_200_OK)
+
     elif request.method == 'PUT':
         data = JSONParser().parse(request)
+        acc = request.user.id
+        if profile.account.id != acc:
+            data= {}
+            data['error'] = 'It is not ur profile!'
+            return JsonResponse(json.dumps(data), status=status.HTTP_401_UNAUTHORIZED, safe=False)
         serializer = ProfileSerializer(profile, data=data)
         if serializer.is_valid():
             serializer.save()

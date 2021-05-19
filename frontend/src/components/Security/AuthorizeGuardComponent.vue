@@ -51,7 +51,7 @@ export default {
                 if(this.is_token == true){
 
                     this.auth['token'] = await window.sessionStorage.getItem('token')
-                    var tkn = `Token ${this.auth['token']}`
+                   // var tkn = `Token ${this.auth['token']}`
                     const headers = {
                         
                             'Authorization': `Token ${this.auth['token']}`,
@@ -61,7 +61,7 @@ export default {
                     
                 
                    // var tkn = `Token 53446787654537689654678`
-                    console.log(tkn)
+                   // console.log(tkn)
                     //alert(this.auth['token'])
                     var response = await fetch('http://localhost:8000/accounts/im_auth/',{
                     method: 'post',
@@ -70,14 +70,14 @@ export default {
                         //body: JSON.stringify(this.auth)
                     })
 
-                    console.log(response)
-                    var output = await response.json()
+                    //console.log(response)
+                    //var output = await response.json()
                    
                     
                    // alert("Status:" + response.status + " \n JSON:" + jsons)
                     if(response.status == 200){
                         this.ok =true;
-                        console.log(output)
+                        //console.log(output)
                         this.links = this.loggedin_links;
                     }
 
