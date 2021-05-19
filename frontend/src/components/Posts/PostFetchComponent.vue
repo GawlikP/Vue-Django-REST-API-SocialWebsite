@@ -57,15 +57,12 @@
 </template>
 
 <script>
-
     import  PostCommentFetchComponent  from '@/components/Comments/PostCommentFetchComponent.vue';
-
 export default {
  
     name:'PostFetchComponent',
      components: {
       PostCommentFetchComponent,
-
        
      // MDBBtn
     },
@@ -85,7 +82,6 @@ export default {
     
     methods:{
         async getPosts(){
-
             var token = await window.sessionStorage.getItem('token')
                     
                     const headers = {
@@ -94,7 +90,6 @@ export default {
                             'Accept': 'application/json',
                             'Content-Type': 'application/json' 
                     }
-
             var response =  await fetch('http://localhost:8000/posts/', {headers: headers});
             this.posts = await response.json()
             this.posts.forEach(post => {
@@ -103,7 +98,6 @@ export default {
             this.posts.forEach(post => {
                     this.setAuthors(post, headers);
                 });
-
            console.log(this.hearthed) 
         },
         async setAuthors(post, headers){
@@ -111,7 +105,6 @@ export default {
                     
                    
             
-
             var response = await fetch(`http://localhost:8000/accounts/${post.author}`, {headers: headers});
                     var json = await response.json();
                     this.authors[post.author] = json;
@@ -121,7 +114,6 @@ export default {
             post.hearts +=1;
             var postr = post;
             postr.author_name = null; 
-
             var token = await window.sessionStorage.getItem('token')
                     
                     const headers = {
@@ -130,7 +122,6 @@ export default {
                             'Accept': 'application/json',
                             'Content-Type': 'application/json' 
                     }
-
             this.hearthed[post.id] = true;
             var response = await fetch(`http://localhost:8000/posts/${postr.id}/`, {
                 method: 'put',
@@ -144,12 +135,10 @@ export default {
     },
     
    
-
 }
 </script>
 <style scoped>
 tr,hr {
 color: white;
 }
-
 </style>
