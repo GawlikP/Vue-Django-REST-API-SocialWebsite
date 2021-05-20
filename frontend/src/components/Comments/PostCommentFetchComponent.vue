@@ -1,7 +1,7 @@
 <template>
     <div >
   
-        <div class="container" >
+        <div class="container mb-2" >
     <a data-toggle="tooltip" title="Komentarze" class="m-2"  role="button" style="color: rgb(59, 89, 152);" @click="collapse1 = !collapse1"  >
         <i class="fas fa-comments fa-lg"></i><MDBBadge color="danger" pill notification v-if="licznik">{{licznik}}</MDBBadge>
     <MDBIcon iconstyle="fab"  size="lg"></MDBIcon>

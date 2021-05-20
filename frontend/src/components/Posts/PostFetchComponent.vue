@@ -1,62 +1,51 @@
 <template>
+    <div id="PostFetchComponent">
+        <div v-for="post in posts" :key="post.id">
+            <div class="container-fluid card bg-white col-12 mt-4 text-black">
 
-    
- 
-
-
-
-
-<div id="PostFetchComponent">
-         
-
-        <div class="container">
-         <div id="loading" v-if="loading==true">
-                        <h1> Loading... </h1>
-        </div>
-        <div v-else>
-               <div class="card mt-4 w-75 p-3" v-for="post in posts" :key="post.id">
-
-                   
-                    
-                        <div id ="big_mommy" style="text-align:left">
-                            <div style="display: inline-block;">
-                            
-                                <img src="https://data.apksum.com/8d/com.tivola.myredpanda/1.1/icon.png" class="rounded-circle"  width="50" height="50"  @click="goTo(`/profile/${profiles[authors[post.author].id].id}`)" alt="avatar" />
-                            </div>
-                        
-                            <div style="display: inline-block;">
-                                <h5 class="mx-2 text-black" >{{authors[post.author].username}} </h5>
-                            </div>
-                        </div>
-
-
-                    
-                    
-                    
-                        
-                        <div class="card-body">
-                            <h6 class="card-title text-black" style="text-align:left">{{post.title}}</h6>
-
-                                <p class="card-text  text-black mt-4" style="text-align:left">
-                                    {{post.content}}
-                                </p>
-
-            
-
-                            <div class="row">
-                                <div style="display: inline;">
-                                    <i data-toggle="tooltip" title="Lubię to!" @click="giveHearth(post)"  class="far fa-heart" style="color:red"></i>
-                            
-                                    <p style="color:black; display: inline-block; padding: 3px;">{{post.hearts}}</p>
-                                </div>
-
-                                <div style="display: inline;">
-                                    <PostCommentFetchComponent v-bind:post_id="post.id" />
-                                </div>
-                            </div>
-                        </div>
-                    
+                <div class="row">
+                <div class="col-sm-12" >
+                    <h5 class=" text-black" style="text-align:left"><img src="https://myket.ir/app-icon/598c4d8f-abad-4128-84b4-cef78115277e.png" class="rounded-circle img-fluid" style="windth:70px; height:70px;" alt="avatar" /> {{ authors[post.author].username }}</h5>
                 </div>
+                </div>
+
+                <div class="row">
+                <div class="col-sm-12">
+                    <h6 class="card-title text-black" style="text-align:left">
+                    {{ post.title }}
+                    </h6>
+                </div>
+                </div>
+
+                <div class="row">
+                <div class="col-sm-12">
+                    <p class="card-text  text-black mt-4" style="text-align:left">
+                    {{ post.content }}
+                    </p>
+                </div>
+                </div>
+
+                <div class="row">
+                <div class="col-sm-12">
+                    <i
+                    data-toggle="tooltip"
+                    title="Lubię to!"
+                    @click="giveHearth(post)"
+                    v-if="hearthed[post.id] == false"
+                    class="far fa-heart"
+                    style="color:red"
+                    ></i>
+                    <i v-else class="fas fa-heart" style="color:red"></i>
+                    <p style="color:black; display: inline-block; padding: 3px;">
+                    {{ post.hearts }}
+                    </p>
+                </div>
+                </div>
+
+                <div style="display: inline;">
+                <PostCommentFetchComponent v-bind:post_id="post.id" />
+                </div>
+            </div>
         </div>
         </div>
 </div>
@@ -241,7 +230,8 @@ export default {
 }
 </script>
 <style scoped>
-tr,hr {
-color: white;
+tr,
+hr {
+  color: white;
 }
 </style>

@@ -10,11 +10,11 @@
 
     <div class="row">
 
-      <div class="col-sm-2 ">
+      <div class="col-sm-2 mt-2">
         <PostFilter />
       </div>
 
-      <div class="col-sm-8 ">
+      <div class="col-sm-8 mb-2">
         <PostFetchComponent />
       </div>
 
