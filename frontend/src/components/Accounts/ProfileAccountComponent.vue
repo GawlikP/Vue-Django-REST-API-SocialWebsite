@@ -1,63 +1,77 @@
 <template>
-    <div class="container mycontainer">
+    <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-8 justify-content-center mycol">
-                <div class="row bg-danger shadow rounded myrow">
-                    <img class="col-12 col-md-4 p-0 rounded-start" src="@/assets/Pepe.jpg">
-                    <div class="col-md-8 p-3 mycol">
-                        <div class="d-flex p-0 justify-content-start">
-                            <h1 class="py-3 text-md-start align-self-center">
-                                {{name}}
-                                <i class="fas fa-pencil-alt p-2 small-icon hand active" data-toggle="tooltip" title="Edytuj profil" v-on:click="show_alert(1)"></i>
-                            </h1>
+            <div class="col-md-8 justify-content-center ">
+                
+                <ProfileInfo 
+                    :user=user 
+                    :img=img 
+                    :registered=registered 
+                    :motto=motto 
+                    :watchers=watchers 
+                    :likes=likes 
+                    :friends=friends />
+                      
+                <!-- POSTS COMPONENT -->
+                <div class="row justify-content-center  ">
+                    <div class="row bg-dark p-3 my-3 shadow rounded" v-for="post in posts" v-bind:key="post.id">
+                        
+                        <!-- Post author info & post actions -->
+                        <div class="d-flex justify-content-between p-0 pb-2 m-0 border-bottom border-1">
                             
-                        </div>
-                        <div class="col-12 px-2">
-                            <p class="col-md-12 m-0 text-start dim-text-underline"><i class="fas fa-user align-self-center px-1" data-toggle="tooltip" title="Edytuj profil"></i>Dołączył: {{registered}}</p>
-                            <p class="col-md-12 pb-3 text-start">{{motto}}</p>
-                            <div class="d-flex flex-row align-items-center p-0 m-0 small-text text-center text-start my-bg-info">
-                                <div class="flex-fill px-0 py-1 m-0 align-self-center mycol">
-                                    Obserwujący: {{watchers}}
-                                </div>
-                                <div class="flex-fill px-0 py-1 m-0 mx-2 align-self-center mycol">
-                                    Polubień: {{likes}}
-                                </div>
-                                <div class="flex-fill px-0 py-1 m-0 align-self-center mycol">
-                                    Znajomi: {{friends}}
+                            <!-- Info -->
+                            <div class="d-flex flex-row">
+                                <img class="p-0 m-0 rounded-circle align-self-center shadow xsmall-img" src="@/assets/Pepe.jpg">
+                                <div class="d-flex flex-column justify-content-start p-0 ps-2 m-0">
+                                    <div class="p-0 m-0 text-start text-decoration-underline">{{post.user}}</div>
+                                    <p class="p-0 m-0 text-start small-text dim-text">Opublikowano: {{post.add_date}}</p>
                                 </div>
                             </div>
+
+                            <!-- Actions -->
+                            <div class="d-flex flex-column p-0 m-0 justify-content-end text-end">
+                                <div class="p-0 m-0 small-text dim-text hand active-danger" v-on:click="show_alert(1)">
+                                    <i class="fas fa-pen p-1" data-toggle="tooltip"></i>
+                                    Edytuj post</div>
+                                <div class="p-0 m-0 small-text dim-text hand active-danger" v-on:click="show_alert(1)">
+                                    <i class="fas fa-trash-alt p-1" data-toggle="tooltip"></i>
+                                    Usuń post</div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <hr>
-                <div class="row justify-content-center  myrow">
-                    <div class="row bg-dark p-3 my-3 shadow rounded" v-for="post in posts" v-bind:key="post.id">
-                        <div class="d-flex p-0 justify-content-start">
-                            <h1 class="py-3 text-start align-self-center">
+                        
+                        <!-- Post -->
+                        <div class="d-flex p-0 justify-content-between">
+                            <h5 class="py-3 text-start align-self-center">
                                 {{post.title}}
-                                <i class="fas fa-pencil-alt p-2 small-icon hand active" data-toggle="tooltip" title="Edytuj post" v-on:click="show_alert(3)"></i>
-                            </h1>
-                            
+                            </h5>
                         </div>
                         <div class="col-12 ms-3">
                             <p class="col-12 p-0 m-0 text-start">{{post.content}}</p>
                         </div>
-                        <div class="col-12 justify-content-center border-bottom border-1 pt-3">
-                            <!-- <router-link class="col-12 py-3 m-0 hand text-info" v-bind:key="post.link" v-bind:to="`${ post.link }`">
-                                    <i class="fas fa-comments px-1" data-toggle="tooltip"></i>
-                                    Wyświetl komentarze
-                            </router-link> -->
-                            <div class="col-12 py-1 m-0 hand text-info" v-on:click="show_alert(2)">
-                                    <i class="fas fa-comments px-1" data-toggle="tooltip"></i>
-                                    Wyświetl komentarze
+                        <!-- <router-link class="col-12 py-3 m-0 hand text-info" v-bind:key="post.link" v-bind:to="`${ post.link }`">
+                                <i class="fas fa-comments px-1" data-toggle="tooltip"></i>
+                                Wyświetl komentarze
+                        </router-link> -->
+                           
+                        <!-- Likes/Comments -->
+                        <div class="row p-1 m-0 mb-2 border-bottom border-1">
+                            <div class="col-6 hand" v-on:click="show_alert(1)">
+                                <i class="fas fa-heart px-1" data-toggle="tooltip"></i>
+                                {{post.likes}}
+                            </div>
+                            <div class="col-6 hand" v-on:click="show_alert(1)">
+                                <i class="fas fa-comments px-1" data-toggle="tooltip"></i>
+                                Komentarze
                             </div>
                         </div>
-                        <div class="col-12">
-                            <p class="col-12 pt-3 m-0 text-start small-text dim-text">Opublikowano: {{post.add_date}}</p>
-                            <div class="col-3 p-0 m-0 text-start small-text dim-text hand active-danger" v-on:click="show_alert(4)">
-                                <i class="fas fa-trash-alt p-2" data-toggle="tooltip"></i>
-                                Usuń post</div>
-                        </div>
+
+                        <!-- Comments blocks -->
+                        <CommentTemplate 
+                            v-for="comment in post.comments" 
+                            v-bind:key="comment.id" 
+                            :user="comment.user" 
+                            :content="comment.content" 
+                            :date="comment.date"/>
                     </div>
                 </div>
             </div>
@@ -66,14 +80,19 @@
 </template>
 
 <script>
+import CommentTemplate from '@/components/Comments/CommentTemplate.vue'
+import ProfileInfo from '@/components/Accounts/ProfileInfoTemplate.vue'
 
 export default {
     name: 'ProfileAccountComponent',
     components: {
+        CommentTemplate : CommentTemplate,
+        ProfileInfo : ProfileInfo,
     },
     data(){
         return {
-            name  : "Pan Pepe",
+            img   : "Pepe.jpg",
+            user  : "Pan Pepe",
             motto : "Cierpię cichutko żyjąc i żyję cichutko by cierpieć.",
             likes : 2137,
             friends  : 420,
@@ -81,34 +100,41 @@ export default {
             registered : "Maj 2015",
             posts:[
                 {id : 1,
+                user : "Subnabu Malahati",
                 add_date : "01/01/2021",
-                link : "posts",
+                likes : 4,
                 title : "Code: JP2GMD",
-                content: "Jan Paweł II Ganiał Małe Dinozury"},
+                content: "Jan Paweł II Ganiał Małe Dinozury",
+                comments : [{
+                    id : 1,
+                    user : "MadaQuaka",
+                    date : "21/03/2021",
+                    content : "Tak było. Nie kłamię."
+                }]},
                 {id : 2,
+                user : "Henryk Majdan",
                 add_date : "06/11/2020",
-                link : "posts",
+                likes : 12,
                 title : "Czym jest Lorem Ipsum?",
-                content: "Lorem Ipsum jest tekstem stosowanym jako przykładowy wypełniacz w przemyśle poligraficznym. Został po raz pierwszy użyty w XV w. przez nieznanego drukarza do wypełnienia tekstem próbnej książki. Pięć wieków później zaczął być używany przemyśle elektronicznym, pozostając praktycznie niezmienionym. Spopularyzował się w latach 60. XX w. wraz z publikacją arkuszy Letrasetu, zawierających fragmenty Lorem Ipsum, a ostatnio z zawierającym różne wersje Lorem Ipsum oprogramowaniem przeznaczonym do realizacji druków na komputerach osobistych, jak Aldus PageMaker"},
+                content: "Lorem Ipsum jest tekstem stosowanym jako przykładowy wypełniacz w przemyśle poligraficznym. Został po raz pierwszy użyty w XV w. przez nieznanego drukarza do wypełnienia tekstem próbnej książki. Pięć wieków później zaczął być używany przemyśle elektronicznym, pozostając praktycznie niezmienionym. Spopularyzował się w latach 60. XX w. wraz z publikacją arkuszy Letrasetu, zawierających fragmenty Lorem Ipsum, a ostatnio z zawierającym różne wersje Lorem Ipsum oprogramowaniem przeznaczonym do realizacji druków na komputerach osobistych, jak Aldus PageMaker",
+                comments : [{
+                    id : 1,
+                    user : "Leeeevii",
+                    date : "18/11/2020",
+                    content : "Takie rzeczy to ja lubie : D."
+                },
+                {
+                    id : 2,
+                    user : "Keeeke",
+                    date : "18/11/2020",
+                    content : "Stary dobry Lorem. Pamiętam jak za czasów Hitlera pisaliśmy z chłopakami z SS w księgach spisowych bezsensowyny tekst. Coś tego typu właśnie."
+                }]},
             ]
         }
     },
     methods: {
-       show_alert: function (inv) {
-           switch (inv) {
-               case 1:
-                    alert("TODO: Edycja danych użytkownika");
-                   break;
-               case 2:
-                    alert("TODO: Sekcja komentarzy");
-                   break;
-               case 3:
-                    alert("TODO: Edycja postów");
-                   break;
-               case 4:
-                    alert("TODO: Usuwanie postu");
-                   break;
-           }
+       show_alert: function () {
+            alert("TODO: Funkcjonalność do stworzenia");
        }
     }
 
@@ -116,14 +142,9 @@ export default {
 </script>
 
 <style scoped>
-.mycontainer{
-    /* border: solid 2px #0f0; */
-}
-.mycol{
-    /* border: solid 2px #f00; */
-}
-.myrow{
-    /* border: solid 2px #00f; */
+.xsmall-img{
+    width: 45px;
+    height: 45px;
 }
 
 .small-text, .dim-text{
@@ -139,16 +160,8 @@ export default {
 h1{
     text-decoration: underline;
 }
-.small-icon{
-    font-size: 0.7em;
-}
 .hand:hover{
     cursor: pointer;
-}
-.my-bg-info *{
-    background-color: darkslateblue;
-    color: #ddd;
-    border-radius: 5px;
 }
 .active, .active-danger, .active-blue{
     transition: all 0.2s;
@@ -162,10 +175,4 @@ h1{
 .active-blue:hover{
     color: lightskyblue;
     }
-.fg-title{
-    color: darkslateblue;
-}
-.none-decorated{
-    text-decoration: none;
-}
 </style>
