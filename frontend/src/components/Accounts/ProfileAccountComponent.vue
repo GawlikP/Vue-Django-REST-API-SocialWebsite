@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8 justify-content-center ">
-                
+               
                 <ProfileInfo 
                     :user=user 
                     :img=img 
@@ -132,9 +132,63 @@ export default {
             ]
         }
     },
+
+    beforeMount(){
+        this.getProfile();
+        this.getAccount();
+    },
+
     methods: {
        show_alert: function () {
             alert("TODO: Funkcjonalność do stworzenia");
+       },
+       async getProfile(){
+           var token =  window.sessionStorage.getItem('token');
+
+          const headers = {
+              'Authorization': `Token ${token}`,
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+          }
+           var res = await fetch("http://localhost:8000/accounts/profile/",{headers: headers}).then(response => {
+               if(response.status == 200){
+                  
+                    //var json =  response.data
+                    
+               //     this.add_date = json['created'];
+               //    this.likes =  4;
+                    return response.json()
+                }
+                else {
+                  alert(response.status)
+                }
+           });
+            this.motto = res['note'];
+           console.log(res);
+       },
+       async getAccount(){
+            var token =  window.sessionStorage.getItem('token');
+
+          const headers = {
+              'Authorization': `Token ${token}`,
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+          }
+           var res = await fetch("http://localhost:8000/accounts/account/",{headers: headers}).then(response => {
+               if(response.status == 200){
+                  
+                    //var json =  response.data
+                    
+               //     this.add_date = json['created'];
+               //    this.likes =  4;
+                    return response.json()
+                }
+                else {
+                  alert(response.status)
+                }
+           });
+           this.user = res['username'];
+           console.log(res);
        }
     }
 

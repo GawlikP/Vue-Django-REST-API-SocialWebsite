@@ -10,7 +10,7 @@
 
 <script>
 // @ is an alias to /src
-import ProfileAccountComponent from '@/components/Accounts/ProfileAccountComponent.vue'
+import ProfileAccountComponent from '@/components/Profile/ProfileAccountComponent.vue'
 
 export default {
   name: 'Profile',

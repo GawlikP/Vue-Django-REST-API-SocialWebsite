@@ -125,15 +125,17 @@ def account_hearts(request, format=None):
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def account_profile(request, format=None):
-    if request.method == 'GET':
-        account = request.user.id
-        profile = Profile.objects.get(account= account)
-        if profile.exists():
-            serializer = ProfileSerializer(data= profile)
-            return JsonResponse(serializer.data, status=status.HTTP_200_OK)
+    acc =request.user
+    try:
+        profile = Profile.objects.get(account= acc)
+    except Profile.DoesNotExist:
         data = {}
-        data['error'] = 'Profile do not exist'
-        return JsonResponse(data= data, status= status.HTTP_404_NOT_FOUND)
+        data['error'] = 'Profile does not exists'
+        return JsonResponse(data=data,status=status.HTTP_404_NOT_FOUND)  
+        
+    serializer = ProfileSerializer(profile)
+        
+    return JsonResponse(data=serializer.data, status=status.HTTP_200_OK, safe=False)
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
@@ -230,6 +232,20 @@ def account_id_profile(request, pk, format=None):
         
         return JsonResponse(data=serializer.data, status=status.HTTP_200_OK)
    
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def account_account(request, format=None):
+    
+
+        try:
+            acc = Account.objects.get(pk= request.user.id)
+        except Account.DoesNotExist:
+            return HttpResponse(status=status.HTTP_404_NOT_FOUND)
+
+        if request.method == 'GET':
+            serializer = AccountSerializer(acc)
+            return JsonResponse(serializer.data)
+
 
 
         
