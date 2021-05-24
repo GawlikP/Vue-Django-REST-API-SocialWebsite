@@ -1,5 +1,9 @@
 
 backend/hearts/*
+backend/hearts/**
 backend/profiles/*
+backend/profiles/**
 backend/core/*
+backend/core/**
 backend/backend/*
+backend/backend/**
