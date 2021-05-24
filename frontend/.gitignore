@@ -21,8 +21,3 @@ pnpm-debug.log*
 *.njsproj
 *.sln
 *.sw?
-
-backend\hearts\**
-backend\profiles\**
-backend\core\**
-backend\backend\**
