@@ -22,7 +22,7 @@ pnpm-debug.log*
 *.sln
 *.sw?
 
-backend\hearts\*
-backend\profiles\*
-backend\core\*
-backend\backend\*
+backend\hearts\**
+backend\profiles\**
+backend\core\**
+backend\backend\**
