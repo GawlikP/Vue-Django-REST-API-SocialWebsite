@@ -22,6 +22,7 @@
                 <div class="d-flex flex-row align-items-center p-0 m-0 small-text text-center text-start my-bg-info">
                     <div class="flex-fill px-0 py-1 m-0 align-self-center ">
                         Obserwujący: {{watchers}}
+                        
                     </div>
                     <div class="flex-fill px-0 py-1 m-0 mx-2 align-self-center ">
                         Polubień: {{likes}}

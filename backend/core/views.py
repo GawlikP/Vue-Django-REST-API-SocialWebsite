@@ -187,10 +187,12 @@ def account_id_posts(request,pk, format=None):
         return JsonResponse(data=data,status=status.HTTP_404_NOT_FOUND)
 
     if request.method == 'GET':
-        posts = Post.objects.filter(author= acc)
-        if posts.exists():
-            serialzier = PostSerializer(data=posts, many=True)
-            return JsonResponse(serialzier.data, status=status.HTTP_200_OK)
+        posts = Post.objects.filter(author= acc.id)
+        print(posts)
+        print(acc.id)
+        if posts.count()> 0:
+            serialzier = PostSerializer(posts, many=True)
+            return JsonResponse(serialzier.data, status=status.HTTP_200_OK, safe=False)
         data = {}
         data['error'] = 'No posts to return'
         return JsonResponse(data=data, status=status.HTTP_404_NOT_FOUND)

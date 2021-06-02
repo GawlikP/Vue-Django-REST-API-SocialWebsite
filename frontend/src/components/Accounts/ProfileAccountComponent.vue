@@ -32,16 +32,20 @@
                             <div class="d-flex flex-column p-0 m-0 justify-content-end text-end">
                                 <div class="p-0 m-0 small-text dim-text hand active-danger" v-on:click="show_alert(1)">
                                     <i class="fas fa-pen p-1" data-toggle="tooltip"></i>
-                                    Edytuj post</div>
+                                    Edytuj post
+                                </div>
+                                
                                 <div class="p-0 m-0 small-text dim-text hand active-danger" v-on:click="show_alert(1)">
                                     <i class="fas fa-trash-alt p-1" data-toggle="tooltip"></i>
-                                    Usuń post</div>
+                                    Usuń post
+                                </div>
                             </div>
                         </div>
                         
                         <!-- Post -->
                         <div class="d-flex p-0 justify-content-between">
                             <h5 class="py-3 text-start align-self-center">
+                              
                                 {{post.title}}
                             </h5>
                         </div>

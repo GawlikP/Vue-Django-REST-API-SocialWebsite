@@ -7,7 +7,10 @@
                 <MDBInput  label="Hasło" white size="lg" type="password" v-model="account.password" />
                 <MDBBtn    class="mt-3 w-75 m-auto"  color="danger"  type="submit" size="lg" rounded>Zaloguj się</MDBBtn>
             </div>
-            <h1 class="alert alert-danger" v-if="output">{{output}} </h1>
+            
+            <h1 v-if="output.username == 'This field may not be blank.'">Zapomniałeś/aś podać nazwę użytkownika !</h1>
+            <h1 v-if="output.password == 'This field may not be blank.'">Zapomniałeś/aś podać hasło !</h1>
+             <h1 v-if="output.error == 'User does not exits!'">Sprawdź swój login i hasło !</h1>
         </form> 
     </div>
 </template>

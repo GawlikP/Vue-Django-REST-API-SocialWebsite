@@ -17,8 +17,17 @@
  
                 </div>
 
-                <h1 v-if="output">{{output}} </h1>
                 
+                <br>
+                <h1 v-if="output.username == 'This field may not be blank.'">Zapomniałeś/aś nazwy użytkownika !</h1>
+                <h1 v-if="output.password == 'This field may not be blank.'">Zapomniałeś/aś wpisać hasła !</h1>
+                <h1 v-if="output.password2 == 'This field may not be blank.'">Źle podałeś/aś drugie hasło !</h1>
+                <h1 v-if="output.email == 'This field may not be blank.'">Musisz podać email !</h1>
+                <h1 v-if="output.error == 'Passwords must match!'">Hasła muszą być takie same !</h1>
+                <h1 v-if="output.email == 'account with this email already exists.'">taki email juz jest</h1>
+                <h1 v-if="output.username == 'account with this username already exists.'">taka nazwa uzytkownika jest juz zajeta</h1>
+                <h1 v-if="output.token">pomyslnie zarejestrowano !</h1>
+               
             </form> 
         </div>
  
@@ -64,7 +73,7 @@ export default {
             // nastepnie okresalmy headery ( 'Content-Type', 'Authorization')
             // w sekcji body nadajemy naszego jsona z trescia parametrow 
             //
-            var response = await fetch('http://localhost:8000/registration/',{
+            var response = await fetch('http://localhost:8000/accounts/',{
                 method: 'post',
                 headers: {
                     'Content-Type': 'application/json'
@@ -75,6 +84,7 @@ export default {
             //var res = await response;
             // zmienna output jest tutaj nadpisywana przez pozysakna odpowiedz
             var output = await response.json()
+           
             this.output = output;
         },
     }
